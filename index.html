@@ -793,7 +793,16 @@ body:has(.nav){--header-glass:rgba(246,248,244,.88)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 </style>
-</head>
+<style>
+.search-box{grid-template-columns:minmax(140px,1.1fr) minmax(130px,1fr) minmax(145px,1fr) minmax(135px,.85fr) auto}
+.search-field{min-width:0}.search-field input[type="date"]{font-size:12px;min-width:0}
+.search-estimate{margin:12px 8px 0;color:var(--muted);font-size:11px;line-height:1.65;max-width:900px}
+.footer-pro>div{min-width:0}.footer-about .brand{white-space:normal;align-items:flex-start}.footer-about .brand-name{white-space:normal;line-height:1.25}.footer-contact-btn{max-width:100%;white-space:normal}
+@media(max-width:900px){.search-box{grid-template-columns:repeat(2,minmax(0,1fr))}.search-box .btn{grid-column:1/-1;width:100%}.search-field:nth-child(2),.search-field:nth-child(4){border-right:0}.search-field:nth-child(3){border-right:1px solid var(--line)}}
+@media(max-width:650px){.search-wrap{min-width:0}.search-box{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;padding:12px}.search-field{padding:8px 6px;min-width:0}.search-field label{font-size:9px;letter-spacing:.02em}.search-field select,.search-field input{font-size:12px;min-width:0;width:100%}.search-field:nth-child(2),.search-field:nth-child(4){border-right:0}.search-field:nth-child(3){border-right:1px solid var(--line)}.search-estimate{margin:10px 4px 0;font-size:10px}.mobile-nav{max-height:calc(100dvh - 130px);overflow-y:auto;overscroll-behavior:contain}.footer-top.footer-pro{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px 16px}.footer-top.footer-pro .footer-about{grid-column:1/-1}.footer-top.footer-pro>div{min-width:0;overflow-wrap:anywhere}.footer-bottom{align-items:flex-start;gap:9px}.footer-bottom span:last-child{text-align:left}.footer-about .brand-name{font-size:17px}.footer-contact-btn{width:100%;justify-content:space-between}}
+@media(max-width:360px){.search-box{grid-template-columns:minmax(0,1fr)}.search-field,.search-field:nth-child(3){border-right:0;border-bottom:1px solid var(--line)}.search-box .btn{grid-column:auto}.footer-top.footer-pro{grid-template-columns:minmax(0,1fr)}.footer-top.footer-pro .footer-about{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.motion-ready,.motion-ready.motion-in,.reveal,.reveal.is-visible{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}}
+</style></head>
 <body>
 <header class="container nav">
 <a class="brand" href="#home" aria-label="Travel & Tourism Digital Platform, beranda"><span class="brand-mark logo-shield" aria-hidden="true"><img src="logo-s71.svg?v=6" alt="" width="48" height="54"></span><span class="brand-name">Travel & Tourism Digital Platform</span></a>
@@ -827,7 +836,7 @@ body:has(.nav){--header-glass:rgba(246,248,244,.88)}
   </div>
   <p class="photo-strip-hint"><span>←</span> Geser untuk melihat lebih banyak inspirasi <span>→</span></p>
 </div>
-<div class="search-wrap"><form class="search-box" id="searchForm"><div class="search-field"><label for="destination">MAU KE MANA?</label><select id="destination"><option value="">Semua destinasi</option><option>Bali</option><option>Pantai Malang</option><option>Pantai Yogyakarta</option><option>Banyuwangi</option><option>Kawah Ijen</option><option>Bromo</option><option>Yogyakarta</option><option>Malang</option><option>Pantai</option><option>Tumpak Sewu Lumajang</option><option>Pantai Papuma Jember</option><option>Taman Nasional Baluran</option><option>Air Terjun Madakaripura</option><option>Kota Batu</option><option>Pantai Klayar Pacitan</option><option>Telaga Sarangan Magetan</option><option>Bandung</option><option>Belitung</option></select></div><div class="search-field"><label for="tripType">GAYA PERJALANAN</label><select id="tripType"><option value="">Semua pengalaman</option><option>Petualangan</option><option>Pantai & pulau</option><option>Alam & petualangan</option><option>Budaya</option><option>Relaksasi</option></select></div><div class="search-field"><label for="vehicles">JUMLAH KENDARAAN</label><select id="vehicles" required><option value="1" selected>1 kendaraan</option><option value="2">2 kendaraan</option><option value="3">3 kendaraan</option><option value="4">4 kendaraan</option><option value="5">5 kendaraan</option></select></div><button class="btn btn-dark" type="submit">Cari trip <span>↗</span></button></form></div></section>
+<div class="search-wrap"><form class="search-box" id="searchForm"><div class="search-field"><label for="destination">MAU KE MANA?</label><select id="destination"><option value="">Semua destinasi</option><option>Bali</option><option>Pantai Malang</option><option>Pantai Yogyakarta</option><option>Banyuwangi</option><option>Kawah Ijen</option><option>Bromo</option><option>Yogyakarta</option><option>Malang</option><option>Pantai</option><option>Tumpak Sewu Lumajang</option><option>Pantai Papuma Jember</option><option>Taman Nasional Baluran</option><option>Air Terjun Madakaripura</option><option>Kota Batu</option><option>Pantai Klayar Pacitan</option><option>Telaga Sarangan Magetan</option><option>Bandung</option><option>Belitung</option></select></div><div class="search-field"><label for="tripType">GAYA PERJALANAN</label><select id="tripType"><option value="">Semua pengalaman</option><option>Petualangan</option><option>Pantai & pulau</option><option>Alam & petualangan</option><option>Budaya</option><option>Relaksasi</option></select></div><div class="search-field date-field"><label for="travelDate">TANGGAL PERJALANAN</label><input id="travelDate" name="travelDate" type="date" aria-describedby="searchEstimate"></div><div class="search-field"><label for="vehicles">JUMLAH KENDARAAN</label><select id="vehicles" required><option value="1" selected>1 kendaraan</option><option value="2">2 kendaraan</option><option value="3">3 kendaraan</option><option value="4">4 kendaraan</option><option value="5">5 kendaraan</option></select></div><button class="btn btn-dark" type="submit">Cari trip <span>↗</span></button></form><p class="search-estimate" id="searchEstimate" role="status" aria-live="polite">Pilih destinasi untuk melihat estimasi awal per kendaraan. Tanggal dan jumlah kendaraan akan ikut dicantumkan saat Anda menghubungi layanan perjalanan.</p></div></section>
 <section class="container section" id="destinasi"><div class="section-head"><div><span class="kicker">Jelajahi rute pilihan · 10–13 orang / mobil</span><h2>Ke mana perjalanan membawamu?</h2></div><p class="section-sub">Temukan inspirasi tujuan dan rute perjalanan untuk kebutuhan liburan, keluarga, maupun perjalanan bersama. Harga mulai ditampilkan sebagai estimasi satu kendaraan untuk rombongan 10–13 orang, bukan per orang.</p></div>
 <div class="dest-grid">
 <article class="destination" data-destination="Bali" data-type="Pantai & pulau"><img loading="lazy" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80" alt="Lanskap tropis Bali"><div class="dest-top"><span class="pill">Paling dicari</span><button class="heart" aria-label="Simpan Bali" aria-pressed="false">♡</button></div><div class="dest-bottom"><h3>Bali</h3><p>Pantai, budaya & alam</p><div class="dest-meta"><span>◷ 3–6 hari</span><strong>Mulai Rp18,5 jt / mobil</strong></div></div></article>
@@ -912,7 +921,7 @@ body:has(.nav){--header-glass:rgba(246,248,244,.88)}
 <article class="package" data-destination="Telaga Sarangan Magetan" data-type="Alam & petualangan"><div class="package-img"><img loading="lazy" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Danau dan pegunungan untuk perjalanan ke Telaga Sarangan Magetan"><span class="pill">Highland getaway</span></div><div class="package-body"><span class="package-location">📍 Telaga Sarangan, Magetan</span><h3>Sarangan Highland Retreat</h3><div class="package-meta"><span>◷ 2 hari 1 malam</span><span>✧ Danau & pegunungan</span></div><div class="package-bottom"><span class="price">Estimasi 1 mobil · 10–13 orang<strong>Rp4.500.000–Rp6.500.000</strong><small class="group-total">Estimasi 1 kendaraan · 2 hari 1 malam; tergantung titik jemput dan kebutuhan perjalanan.</small></span><a class="circle-arrow package-link" href="#kontak" aria-label="Tanyakan paket Telaga Sarangan Magetan">↗</a></div></div></article>
 <article class="package" data-destination="Yogyakarta" data-type="Budaya"><div class="package-img"><img loading="lazy" src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80" alt="Candi Borobudur saat matahari terbit"><span class="pill">Culture trip</span></div><div class="package-body"><span class="package-location">📍 Yogyakarta, Jawa</span><h3>Java Heritage Journey</h3><div class="package-meta"><span>◷ 3 hari 2 malam</span><span>✧ Budaya & kuliner</span></div><div class="package-bottom"><span class="price">Estimasi 1 mobil · 10–13 orang<strong>Rp12.500.000–Rp16.250.000</strong><small class="group-total">Total paket untuk 1 rombongan · 3 hari 2 malam</small></span><a class="circle-arrow package-link" href="#kontak" aria-label="Tanyakan paket Yogyakarta">↗</a></div></div></article>
 </div><div class="stats"><div class="stat"><strong>25+</strong><span>Destinasi pilihan</span></div><div class="stat"><strong>1.2k+</strong><span>Penjelajah bahagia</span></div><div class="stat"><strong>100%</strong><span>Semangat lokal</span></div></div></section>
-<section class="testimonial testimonial-editorial testimonial-reference customer-review customer-review-match" id="cerita"><div class="container testimonial-inner"><div class="testimonial-intro"><span class="kicker">PENGALAMAN PERJALANAN</span><h2>Setiap perjalanan layak menjadi pengalaman yang berkesan.</h2><p class="testimonial-lead">Setiap perjalanan punya cerita unik. Ini salah satunya.</p></div><article class="testimonial-card testimonial-reference-card customer-review-card"><div class="testimonial-card-top"><span class="testimonial-label">PENGALAMAN PELANGGAN</span><span class="quote-mark" aria-hidden="true">“</span></div><p class="quote">“Semua terasa personal dari awal sampai akhir. Kami menemukan tempat-tempat yang mungkin tidak akan kami temukan sendiri. Pulang membawa foto, teman baru, dan banyak cerita.”</p><div class="person"><div class="testimonial-avatar trip-photo customer-portrait"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;crop=faces&amp;w=240&amp;h=240&amp;q=85" alt="Foto profil traveler" width="76" height="76" loading="lazy"></div><div><strong>Adinda Putri</strong><span>Traveler · Bali, Indonesia</span></div></div><p class="testimonial-note"></p></article></div></section>
+<section class="testimonial testimonial-editorial testimonial-reference customer-review customer-review-match" id="cerita"><div class="container testimonial-inner"><div class="testimonial-intro"><span class="kicker">PENGALAMAN PERJALANAN</span><h2>Setiap perjalanan layak menjadi pengalaman yang berkesan.</h2><p class="testimonial-lead">Setiap perjalanan punya cerita unik. Ini salah satunya.</p></div><article class="testimonial-card testimonial-reference-card customer-review-card"><div class="testimonial-card-top"><span class="testimonial-label">ILUSTRASI LAYANAN</span><span class="quote-mark" aria-hidden="true">“</span></div><p class="quote">Kami membantu menyusun opsi rute, jadwal, dan estimasi biaya berdasarkan kebutuhan rombongan. Detail perjalanan dibahas bersama, lalu harga akhir dikonfirmasi sebelum pemesanan disepakati.</p><div class="person"><div><strong>Contoh alur layanan</strong><span>Ilustrasi informasi, bukan testimoni pelanggan</span></div></div><p class="testimonial-note">Konten ini menjelaskan proses layanan dan tidak mewakili ulasan pelanggan terverifikasi.</p></article></div></section>
 <section class="container newsletter" id="kontak"><div class="newsletter-card"><div class="cta-copy"><span class="kicker" style="color:#455936">Perjalanan Anda dimulai di sini</span><h2>Ada rencana bepergian bersama rombongan?</h2><p>Sampaikan tujuan, tanggal keberangkatan, titik jemput, dan kebutuhan perjalanan Anda. Kami siap membantu membahas opsi rute, susunan jadwal, serta estimasi biaya untuk rombongan 10–13 orang.</p><div class="cta-trust"><span>✓ Rute sesuai kebutuhan</span><span>✓ Jadwal lebih terarah</span><span>✓ Estimasi sebelum konfirmasi</span></div></div><a class="btn btn-dark cta-button" href="https://wa.me/6282143681035?text=Halo%20Travel%20%26%20Tourism%20Digital%20Platform%2C%20saya%20ingin%20merencanakan%20perjalanan%20rombongan%2010%E2%80%9313%20orang.%20Tujuan%3A%20____.%20Tanggal%3A%20____.%20Titik%20jemput%3A%20____.%20Mohon%20bantu%20informasi%20rute%20dan%20estimasi%20biaya." target="_blank" rel="noopener noreferrer"><span>Konsultasi via WhatsApp</span><span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer class="footer">
@@ -934,9 +943,9 @@ body:has(.nav){--header-glass:rgba(246,248,244,.88)}
         <a href="#kontak">Konsultasi perjalanan <span>↗</span></a><a href="#layanan">Kebutuhan perjalanan</a><a href="#paket">Paket & estimasi biaya</a>
         <p class="footer-small">Estimasi biaya menyesuaikan tujuan, tanggal, durasi, jumlah peserta, dan kebutuhan perjalanan. Rincian akhir akan dibahas sebelum pemesanan dikonfirmasi.</p>
       </div></div>
-      <div><h4>Hubungi kami</h4><div class="footer-links">
-        <a href="https://wa.me/6282143681035" target="_blank" rel="noopener noreferrer">WhatsApp <span>↗</span></a><a href="https://www.tiktok.com/@syauqim71" target="_blank" rel="noopener noreferrer">TikTok <span>↗</span></a>
-      </div><a class="footer-contact-btn" href="https://wa.me/6282143681035?text=Halo%20Travel%20%26%20Tourism%20Digital%20Platform%2C%20saya%20ingin%20konsultasi%20perjalanan%20rombongan.%20Mohon%20informasi%20langkah%20selanjutnya." target="_blank" rel="noopener noreferrer">Rencanakan via WhatsApp <span>↗</span></a></div>
+      <div><h4>Mulai merencanakan</h4><div class="footer-links">
+        <a href="#kontak">Konsultasi perjalanan <span>↗</span></a><a href="#paket">Bandingkan paket <span>↗</span></a><a href="#destinasi">Pilih destinasi <span>↗</span></a>
+      </div><p class="footer-small">Belum ada pemesanan otomatis. Rincian perjalanan dan harga akhir dikonfirmasi langsung sebelum kesepakatan.</p><a class="footer-contact-btn" href="#kontak">Diskusikan perjalanan <span>↗</span></a></div>
     </div>
     <div class="footer-bottom"><span>© <span id="year"></span> Travel & Tourism Digital Platform. Seluruh hak cipta dilindungi.</span><span>Teman perjalanan Anda untuk rencana yang lebih matang.</span></div>
   </div>
@@ -974,6 +983,7 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersecti
     });
   },{threshold:0.12,rootMargin:'0px 0px -35px 0px'});
   revealTargets.forEach(element=>revealObserver.observe(element));
+  window.setTimeout(()=>revealTargets.forEach(element=>element.classList.add('is-visible')),1800);
 }
 
 $('#year').textContent=new Date().getFullYear();
@@ -1051,41 +1061,67 @@ document.querySelectorAll('.heart').forEach(button=>{
   });
 });
 
+function readTripSelection(){
+  const destination=document.getElementById('destination')?.value || '';
+  const type=document.getElementById('tripType')?.value || '';
+  const date=document.getElementById('travelDate')?.value || '';
+  const vehicles=Math.min(5,Math.max(1,Number(document.getElementById('vehicles')?.value || 1)));
+  const dateLabel=date ? new Date(date+'T12:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : 'Belum dipilih';
+  const matchedPackage=[...document.querySelectorAll('.package')].find(card=>(!destination||card.dataset.destination===destination)&&(!type||card.dataset.type===type));
+  let priceRange='';
+  if(matchedPackage){
+    const priceNode=matchedPackage.querySelector('.price strong');
+    const numbers=(priceNode?.textContent.match(/\d[\d.]*/g)||[]).map(value=>Number(value.replace(/\./g,''))).filter(Number.isFinite);
+    if(numbers.length>=1){
+      const low=numbers[0]*vehicles, high=(numbers[1]||numbers[0])*vehicles;
+      const money=value=>'Rp'+new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(value);
+      priceRange=money(low)+(high!==low?'–'+money(high):'');
+    }
+  }
+  return {destination:destination||'Belum ditentukan',type:type||'Bebas / belum ditentukan',date,dateLabel,vehicles,capacity:'sekitar '+(vehicles*10)+'–'+(vehicles*13)+' orang',packageName:matchedPackage?.querySelector('h3')?.textContent.trim()||'',priceRange};
+}
+function updateSearchEstimate(){
+  const estimate=document.getElementById('searchEstimate'); if(!estimate)return;
+  const trip=readTripSelection();
+  estimate.textContent=trip.priceRange
+    ? 'Estimasi awal '+trip.priceRange+' untuk '+trip.vehicles+' kendaraan · kapasitas indikatif '+trip.capacity+'. Harga belum final; tanggal, titik jemput, rute, durasi, dan kebutuhan tambahan perlu dikonfirmasi.'
+    : 'Pilih destinasi yang memiliki paket untuk melihat estimasi awal. Kapasitas indikatif 10–13 orang per kendaraan; harga akhir dikonfirmasi setelah rincian perjalanan dibahas.';
+}
+['destination','tripType','vehicles','travelDate'].forEach(id=>document.getElementById(id)?.addEventListener('change',updateSearchEstimate));
 $('#searchForm').addEventListener('submit',event=>{
   event.preventDefault();
-  const destination=$('#destination').value;
-  const type=$('#tripType').value;
-  const vehicles=$('#vehicles').value || '1';
-  const destinationCards=[...document.querySelectorAll('.destination')];
-  const packageCards=[...document.querySelectorAll('.package')];
-  const matches=card=>(!destination||card.dataset.destination===destination)&&(!type||card.dataset.type===type);
+  const trip=readTripSelection();
+  const destinationCards=[...document.querySelectorAll('.destination')], packageCards=[...document.querySelectorAll('.package')];
+  const matches=card=>(!document.getElementById('destination').value||card.dataset.destination===trip.destination)&&(!document.getElementById('tripType').value||card.dataset.type===trip.type);
   let destinationCount=0,packageCount=0;
-  destinationCards.forEach(card=>{
-    const match=matches(card);
-    card.hidden=!match;
-    card.style.display=match?'':'none';
-    if(match)destinationCount++;
-  });
-  packageCards.forEach(card=>{
-    const match=matches(card);
-    card.hidden=!match;
-    card.style.display=match?'':'none';
-    if(match)packageCount++;
-  });
+  destinationCards.forEach(card=>{const match=matches(card);card.hidden=!match;card.style.display=match?'':'none';if(match)destinationCount++;});
+  packageCards.forEach(card=>{const match=matches(card);card.hidden=!match;card.style.display=match?'':'none';if(match)packageCount++;});
+  document.getElementById('destinasi').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   const total=destinationCount+packageCount;
-  $('#destinasi').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  const countText=total?`${destinationCount} destinasi dan ${packageCount} paket cocok`:'Belum ada hasil yang cocok. Coba ubah destinasi atau gaya perjalanan.';
-  notify(`${countText} · pilihan ${vehicles} kendaraan`);
+  notify((total?destinationCount+' destinasi dan '+packageCount+' paket cocok':'Belum ada hasil yang cocok. Coba ubah destinasi atau gaya perjalanan.')+' · '+trip.vehicles+' kendaraan'+(trip.date?' · '+trip.dateLabel:''));
+  updateSearchEstimate();
 });
-
+function openTripWhatsApp(packageName){
+  const trip=readTripSelection(), chosenPackage=packageName||trip.packageName||'Paket perjalanan sesuai kebutuhan';
+  const message=[
+    'Halo Travel & Tourism Digital Platform, saya ingin konsultasi perjalanan.',
+    'Destinasi: '+trip.destination,'Paket: '+chosenPackage,'Gaya perjalanan: '+trip.type,
+    'Tanggal: '+trip.dateLabel,'Jumlah kendaraan: '+trip.vehicles,'Perkiraan kapasitas: '+trip.capacity,
+    'Estimasi harga awal: '+(trip.priceRange||'Belum tersedia; mohon konfirmasi penawaran'),
+    'Titik jemput: belum ditentukan',
+    'Mohon konfirmasi ketersediaan, rute, durasi, kapasitas kendaraan, dan harga akhir. Estimasi bukan harga final.'
+  ].join('\n');
+  window.open('https://wa.me/6282143681035?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+}
 document.querySelectorAll('.package-link').forEach(link=>link.addEventListener('click',event=>{
   event.preventDefault();
-  const card=link.closest('.package');
-  const packageName=card?.querySelector('h3')?.textContent.trim() || 'destinasi pilihan';
-  const vehicles=document.getElementById('vehicles')?.value || '1';
-  const message='Halo Travel & Tourism Digital Platform, saya ingin menanyakan paket '+packageName+' dengan '+vehicles+' unit kendaraan (pilihan 1–5 unit). Mohon penawaran harga berdasarkan tanggal, titik jemput, rute, dan durasi perjalanan. Saya memahami harga akhir dikonfirmasi sesuai kebutuhan perjalanan.';
-  window.open('https://wa.me/6282143681035?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+  const card=link.closest('.package'), packageName=card?.querySelector('h3')?.textContent.trim()||'Paket perjalanan';
+  const destinationSelect=document.getElementById('destination');
+  if(destinationSelect&&card?.dataset.destination)destinationSelect.value=card.dataset.destination;
+  openTripWhatsApp(packageName);
 }));
+document.querySelector('.cta-button')?.addEventListener('click',event=>{event.preventDefault();openTripWhatsApp();});
+updateSearchEstimate();
 
 /* Consistent bilingual UI: translate original DOM values, never already-translated values. */
 (function(){
@@ -1356,22 +1392,6 @@ document.querySelectorAll('.package-link').forEach(link=>link.addEventListener('
 
 </script>
 
-<script>
-/* Motion enhancements are progressive and respect reduced-motion preferences. */
-(function(){
- const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const logo=document.querySelector('.brand');
- if(logo){logo.setAttribute('aria-label','Travel & Tourism Digital Platform — kembali ke beranda');}
- if(!reduce && 'IntersectionObserver' in window){
-  const targets=document.querySelectorAll('.section-head,.destination,.package,.feature-copy,.feature-photo,.gallery-card,.testimonial-inner,.newsletter-card');
-  targets.forEach((el)=>{el.classList.add('motion-ready');});
-  const style=document.createElement('style');
-  style.textContent='.motion-ready{opacity:0;transform:translateY(16px);transition:opacity .65s cubic-bezier(.22,.8,.25,1),transform .65s cubic-bezier(.22,.8,.25,1)}.motion-ready.motion-in{opacity:1;transform:translateY(0)}.destination.motion-ready:nth-child(2),.package.motion-ready:nth-child(2),.gallery-card.motion-ready:nth-child(2){transition-delay:70ms}.destination.motion-ready:nth-child(3),.package.motion-ready:nth-child(3),.gallery-card.motion-ready:nth-child(3){transition-delay:130ms}.destination.motion-ready:nth-child(4),.gallery-card.motion-ready:nth-child(4){transition-delay:190ms}';
-  document.head.appendChild(style);
-  const observer=new IntersectionObserver((entries)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('motion-in');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -30px 0px'});
-  targets.forEach(el=>observer.observe(el));
- }
-})();
-</script>
+
 
 </body></html>
