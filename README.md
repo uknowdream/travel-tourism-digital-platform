@@ -7,12 +7,12 @@ A bilingual (English / Indonesian) travel-discovery website focused on destinati
 
 ## Experience and features
 
-- **Global destination catalogue:** 41 destinations across six world regions, including 18 destinations in Indonesia, with search, category and region filters, sorting, and destination details.
-- **Saved places and route builder:** Save favourites, filter directly to Indonesia, and add up to five additional stops. State is stored locally in the current browser where local storage is available.
+- **Global destination catalogue:** 41 destinations across six world regions, including 18 destinations in Indonesia, with keyword search, country and region filters, experience categories, sorting, destination details, and an Indonesia quick filter.
+- **Saved places and route builder:** Save favourites, filter directly to Indonesia, and add up to five additional stops. Reorder route stops with move-up / move-down controls; saved places and routes stay in the current browser when local storage is available.
 - **Bilingual interface:** Toggle English and Indonesian without losing the selected route. Generate shareable planner links that restore trip settings and stops without adding personal notes to the URL.
 - **Itinerary builder:** Create a dated daily outline with arrival, destination activities, potential transfer days, and a departure / buffer day. Each stop offers a link to a destination map. Print the itinerary or export all-day events to an .ics calendar file.
 - **Planning-budget heuristic:** Presents an indicative USD range based on broad region and budget-style assumptions. It is not supplier pricing, a quote, or a live calculation.
-- **Responsive and accessibility foundations:** Desktop, tablet and mobile layouts, a minimum 10px floor for explicit pixel labels, keyboard focus styles, accessible destination dialog behavior, and reduced-motion support.
+- **Responsive and accessibility foundations:** Desktop, tablet and mobile layouts, mobile-first form controls, responsive image `srcset` delivery, explicit slideshow pause/play, keyboard focus styles, accessible destination dialog behavior, and reduced-motion support.
 - **SEO and sharing basics:** Page metadata, Open Graph and Twitter card metadata, structured JSON-LD, robots.txt, sitemap.xml, and a custom SVG favicon.
 - **Image resilience:** Images are loaded from Unsplash; a designed fallback appears when a remote image fails.
 
@@ -41,7 +41,7 @@ The repository includes a dependency-free structural audit:
     python scripts/site_qa.py --js-out /tmp/travel-tourism-inline.js
     node --check /tmp/travel-tourism-inline.js
 
-A browser smoke-test suite is available in tests/browser-smoke.mjs. It covers core destination interactions, language switching, favourites, planner output, map links, and representative desktop and mobile viewport behavior. The GitHub Actions workflow installs Playwright/Chromium and runs these checks on pushes and pull requests.
+A browser smoke-test suite is available in tests/browser-smoke.mjs. It covers country filtering, language switching, slideshow controls, favourites, route-stop ordering, planner output, share/print/calendar actions, recovery of all 41 destination images, and layout overflow across desktop, tablet, and mobile viewports from 1440px down to 320px. GitHub Actions installs Playwright/Chromium and runs these checks on pushes and pull requests.
 
 The static audit and a production source audit have been performed. Browser CI results must be checked in the Actions tab for the latest run; automated checks do not replace visual review on actual devices, screen readers, and a wider browser matrix.
 
