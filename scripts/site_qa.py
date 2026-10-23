@@ -102,8 +102,8 @@ def main():
     if css:
         cleaned_css = re.sub(r"/\*[\s\S]*?\*/", "", css.group(1))
         check(cleaned_css.count("{") == cleaned_css.count("}"), "CSS braces are balanced")
-        font_declarations = re.findall(r"font-size\\s*:\\s*([^;]+);", cleaned_css)
-        tiny_px = [float(value) for declaration in font_declarations for value in re.findall(r"(\\d+(?:\\.\\d+)?)px", declaration) if float(value) < 10]
+        font_declarations = re.findall(r"font-size\s*:\s*([^;]+);", cleaned_css)
+        tiny_px = [float(value) for declaration in font_declarations for value in re.findall(r"(\d+(?:\.\d+)?)px", declaration) if float(value) < 10]
         check(not tiny_px, f"Explicit pixel font sizes are at least 10px (found {tiny_px[:12]})")
     else:
         check(False, "Inline stylesheet exists")
