@@ -1067,7 +1067,7 @@ function readTripSelection(){
   const date=document.getElementById('travelDate')?.value || '';
   const vehicles=Math.min(5,Math.max(1,Number(document.getElementById('vehicles')?.value || 1)));
   const dateLabel=date ? new Date(date+'T12:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : 'Belum dipilih';
-  const matchedPackage=[...document.querySelectorAll('.package')].find(card=>(!destination||card.dataset.destination===destination)&&(!type||card.dataset.type===type));
+  const matchedPackage=destination?[...document.querySelectorAll('.package')].find(card=>card.dataset.destination===destination&&(!type||card.dataset.type===type)):null;
   let priceRange='';
   if(matchedPackage){
     const priceNode=matchedPackage.querySelector('.price strong');
