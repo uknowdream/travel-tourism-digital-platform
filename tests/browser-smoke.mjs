@@ -73,7 +73,7 @@ try {
   assert.equal(await page.locator("#tripItinerary .day-card").count(), 7);
   assert.ok(await page.locator("#tripWarnings").isVisible(), "International route should display a border-crossing warning");
   assert.equal(await page.locator("#tripItinerary .day-map").count(), 7);
-  assert.match(await page.locator("#tripResultText").innerText(), /Route sequence/);
+  assert.match(await page.locator("#tripResultText").textContent(), /Route sequence/);
   assert.match(await page.locator("#tripItinerary .day-card").first().innerText(), /202\d/);
   pass("Planner builds dated day cards, indicative budget, cross-border warning and destination map links");
 
