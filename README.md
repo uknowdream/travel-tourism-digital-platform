@@ -7,7 +7,7 @@ A bilingual (English / Indonesian) travel-discovery website focused on destinati
 
 ## Experience and features
 
-- **Global destination catalogue:** 25 destinations across six world regions, with search, category and region filters, sorting, and destination details.
+- **Global destination catalogue:** 41 destinations across six world regions, including 18 destinations in Indonesia, with search, category and region filters, sorting, and destination details.
 - **Saved places and route builder:** Save favourites and add up to five additional stops. State is stored locally in the current browser where local storage is available.
 - **Bilingual interface:** Toggle English and Indonesian without losing the selected route.
 - **Itinerary builder:** Create a dated daily outline with arrival, destination activities, potential transfer days, and a departure / buffer day. Each stop offers a link to a destination map.
