@@ -1176,7 +1176,7 @@ const applyImageFallback=img=>{
   const id=candidate.match(/photo-([a-zA-Z0-9-]+)/)?.[1],originalId=(img.dataset.originalImage||"").match(/photo-([a-zA-Z0-9-]+)/)?.[1];
   if(id&&id===originalId)continue;
   if(box){box.classList.remove("image-fallback");delete box.dataset.imageFallback}
-  img.style.display="block";img.style.visibility="visible";img.dataset.usingImageFallback="true";
+  img.removeAttribute("srcset");img.removeAttribute("sizes");img.style.display="block";img.style.visibility="visible";img.dataset.usingImageFallback="true";
   img.alt=lang==="en"?"Illustrative travel photograph (original image unavailable)":"Foto ilustrasi perjalanan (foto asli tidak tersedia)";
   img.src=candidate;
   return;
