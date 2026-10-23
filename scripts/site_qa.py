@@ -75,7 +75,7 @@ def main():
     check(bool(title and ("Travel & Tourism Digital Platform" in title.group(1) or "Travel &amp; Tourism Digital Platform" in title.group(1))), "Document title includes product name")
     check('name="description"' in html and 'property="og:title"' in html and 'property="og:image"' in html, "SEO and social preview metadata present")
 
-    ids_required = ["destinationGrid", "plannerForm", "tripEstimate", "tripWarnings", "tripItinerary", "tripResult", "routeDestinationPicker"]
+    ids_required = ["destinationGrid", "plannerForm", "tripEstimate", "tripWarnings", "tripItinerary", "tripResult", "routeDestinationPicker", "indonesiaFilter", "shareBrief", "printBrief", "calendarBrief"]
     check(all(f'id="{value}"' in html for value in ids_required), "Destination catalogue and planner features are present")
     keys_ok = html.count("briefRawToggle:") == 2
     check(keys_ok, "Planner result summary has English and Indonesian labels")
@@ -92,12 +92,19 @@ def main():
     mobile_blocks = [html[start:(mobile_breakpoints[i + 1] if i + 1 < len(mobile_breakpoints) else len(html))] for i, start in enumerate(mobile_breakpoints)]
     check(any(re.search(r"\.destination-grid\s*\{[^}]*grid-template-columns:\s*1fr", block) for block in mobile_blocks), "Mobile destination cards prioritize readable single-column layout")
     check("function makeBrief(focusOutput=true)" in html and "Indicative daily budget" in html and "not live prices" in html, "Planner generates daily outline and labels budget as indicative")
+    check("image-fallback" in html and "const IMAGE_FALLBACKS" in html, "Broken images have category-aware recovery paths")
+    check(all(x in html for x in ["function makeShareUrl()", "function loadSharedPlanFromUrl()", "function downloadCalendar()", "function printBrief()"]), "Shareable planner, calendar export and print features exist")
+    check('data-country-search="Indonesia"' in html and 'id="indonesiaCount"' in html, "Indonesia quick filter exists")
+    check('rel="preload" as="image"' in html, "Hero image is preloaded")
     check("image-fallback" in html, "Broken images receive a designed fallback state")
 
     css = re.search(r"<style>([\s\S]*?)</style>", html)
     if css:
         cleaned_css = re.sub(r"/\*[\s\S]*?\*/", "", css.group(1))
         check(cleaned_css.count("{") == cleaned_css.count("}"), "CSS braces are balanced")
+        font_declarations = re.findall(r"font-size\\s*:\\s*([^;]+);", cleaned_css)
+        tiny_px = [float(value) for declaration in font_declarations for value in re.findall(r"(\\d+(?:\\.\\d+)?)px", declaration) if float(value) < 10]
+        check(not tiny_px, f"Explicit pixel font sizes are at least 10px (found {tiny_px[:12]})")
     else:
         check(False, "Inline stylesheet exists")
 
