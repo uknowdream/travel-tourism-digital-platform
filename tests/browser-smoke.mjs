@@ -46,6 +46,15 @@ try {
   await page.locator("#languageToggle").click();
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
   pass("English / Indonesian language switch works");
+  assert.equal(await page.locator("#heroSlideDots button").count(), 5);
+  assert.equal(await page.locator("#heroSlideIndex").innerText(), "01 / 05");
+  await page.locator("#heroSlideNext").click();
+  assert.equal(await page.locator("#heroSlideIndex").innerText(), "02 / 05");
+  assert.equal(await page.locator("#heroSlideDots button").nth(1).getAttribute("aria-current"), "true");
+  await page.locator("#heroSlidePrev").click();
+  assert.equal(await page.locator("#heroSlideIndex").innerText(), "01 / 05");
+  pass("Five-slide hero carousel controls and active pagination work");
+
 
   await page.locator("[data-detail]").first().click();
   assert.ok((await page.locator("#dialogBackdrop").getAttribute("class")).includes("open"));
