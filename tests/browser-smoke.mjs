@@ -93,6 +93,28 @@ try {
   assert.ok((await page.locator("#tripItinerary").innerText()).includes("Buka peta destinasi"));
   pass("Generated planner output stays bilingual after switching languages");
 
+  await page.locator("#showMore").click();
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 25);
+  await page.locator("#destinationGrid img").evaluateAll(images => images.forEach(img => { img.loading = "eager"; }));
+  await page.waitForFunction(() => [...document.querySelectorAll("#destinationGrid .card-image img")].every(img =>
+    (img.complete && img.naturalWidth > 0) || img.closest(".card-image")?.classList.contains("image-fallback")
+  ), null, { timeout: 30000 }).catch(async error => {
+    const broken = await page.locator("#destinationGrid .card-image img").evaluateAll(images =>
+      images.filter(img => !(img.complete && img.naturalWidth > 0) && !img.closest(".card-image")?.classList.contains("image-fallback")).map(img => ({ src: img.src, attempts: img.dataset.imageRecoveryAttempt }))
+    );
+    throw new Error("Destination image recovery never settled: " + JSON.stringify(broken) + " " + error.message);
+  });
+  const imageReport = await page.locator("#destinationGrid .card-image img").evaluateAll(images => ({
+    total: images.length,
+    photosLoaded: images.filter(img => img.complete && img.naturalWidth > 0).length,
+    usedRecovery: images.filter(img => img.dataset.usingImageFallback === "true" && img.complete && img.naturalWidth > 0).length,
+    gracefulPlaceholders: images.filter(img => img.closest(".card-image")?.classList.contains("image-fallback")).length,
+    unresolved: images.filter(img => !(img.complete && img.naturalWidth > 0) && !img.closest(".card-image")?.classList.contains("image-fallback")).length
+  }));
+  assert.equal(imageReport.total, 25);
+  assert.equal(imageReport.unresolved, 0);
+  pass("All 25 destination cards have a loaded photo or a deliberate accessible fallback: " + JSON.stringify(imageReport));
+
   await noHorizontalOverflow(page, "Desktop 1440px");
   assert.deepEqual(runtimeErrors, [], "Runtime JavaScript errors: " + runtimeErrors.join("; "));
   await context.close();
@@ -105,6 +127,28 @@ try {
   await mobile.locator("#destinationGrid .destination-card").first().waitFor({ timeout: 15000 });
   assert.equal(await mobile.locator("#destinationGrid").evaluate(el => getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length), 1);
   assert.ok(Number.parseFloat(await mobile.locator("#planNotes").evaluate(el => getComputedStyle(el).fontSize)) >= 16);
+  await mobile.locator("#planner").scrollIntoViewIfNeeded();
+  const plannerLayout = await mobile.evaluate(() => {
+    const layout = document.querySelector(".planner-layout");
+    const fields = document.querySelector(".planner-fields");
+    const card = document.querySelector(".planner-card");
+    const actions = [...document.querySelectorAll(".planner-actions > *")];
+    const cardRect = card.getBoundingClientRect();
+    return {
+      layoutColumns: getComputedStyle(layout).gridTemplateColumns.trim().split(/\s+/).length,
+      fieldColumns: getComputedStyle(fields).gridTemplateColumns.trim().split(/\s+/).length,
+      cardFits: cardRect.left >= -1 && cardRect.right <= innerWidth + 1,
+      actionsFit: actions.every(el => { const r = el.getBoundingClientRect(); return r.width === 0 || (r.left >= cardRect.left - 1 && r.right <= cardRect.right + 1); }),
+      inputFont: parseFloat(getComputedStyle(document.querySelector("#planStart")).fontSize)
+    };
+  });
+  assert.equal(plannerLayout.layoutColumns, 1, "Planner narrative and form must stack on phones");
+  assert.equal(plannerLayout.fieldColumns, 1, "Planner form fields must become one column on phones");
+  assert.ok(plannerLayout.cardFits, "Planner card should fit viewport");
+  assert.ok(plannerLayout.actionsFit, "Route-stop controls should stay inside the planner card");
+  assert.ok(plannerLayout.inputFont >= 16, "Mobile inputs should avoid browser auto-zoom");
+  pass("Trip planner responsive layout fits mobile viewport: " + JSON.stringify(plannerLayout));
+
   await mobile.locator("#menuToggle").click();
   assert.equal(await mobile.locator("#menuToggle").getAttribute("aria-expanded"), "true");
   await mobile.locator('#mobileNav a[href="#destinations"]').click();
