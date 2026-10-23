@@ -26,7 +26,7 @@ test('has unique element IDs and destination/planner controls', () => {
     'menuToggle', 'mobileNav', 'quickSearch', 'searchText', 'searchCategory',
     'searchRegion', 'destinationGrid', 'heroSlideshow', 'heroSlideImage',
     'heroSlidePrev', 'heroSlideNext', 'heroSlideDots', 'plannerForm',
-    'routeDestinationPicker', 'tripEstimate', 'tripItinerary', 'indonesiaFilter', 'shareBrief', 'printBrief', 'calendarBrief'
+    'routeDestinationPicker', 'tripEstimate', 'tripItinerary', 'indonesiaFilter', 'shareBrief', 'printBrief', 'calendarBrief', 'compareSaved', 'comparePanel', 'compareGrid', 'dialogMap', 'dialogCompare', 'dialogShare'
   ]) assert.ok(ids.includes(id), 'Missing required element #' + id);
 });
 
@@ -118,6 +118,19 @@ test('visible typography has a 10px minimum on explicit pixel font sizes', () =>
   const tooSmall = declarations.flatMap(value => [...value.matchAll(/(\d+(?:\.\d+)?)px/g)]
     .map(match => Number(match[1])).filter(px => px < 10));
   assert.deepEqual(tooSmall, []);
+});
+
+test('destination comparison, maps and shareable destination deep links are present', () => {
+  assert.match(html, /ttdp:compare/);
+  assert.match(html, /function renderCompare\(\)/);
+  assert.match(html, /function toggleCompare\(id\)/);
+  assert.match(html, /function shareDestination\(id\)/);
+  assert.match(html, /function loadSharedDestinationFromUrl\(\)/);
+  assert.match(html, /id="dialogMap"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+  assert.match(html, /google\.com\/maps\/search/);
+  assert.match(css, /\.compare-grid\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(css, /@media\(max-width:600px\)\{\.compare-panel/);
+  assert.equal((html.match(/compareSaved:/g) || []).length, 2, 'Comparison labels must exist in both languages');
 });
 
 test('the destination image fallback and high-priority hero preload are configured', () => {
