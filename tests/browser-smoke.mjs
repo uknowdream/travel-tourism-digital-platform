@@ -89,7 +89,7 @@ try {
   pass("Planner builds dated day cards, indicative budget, cross-border warning and destination map links");
 
   await page.locator("#languageToggle").click();
-  assert.match(await page.locator("#tripResultText").innerText(), /Urutan rute/);
+  assert.match(await page.locator("#tripResultText").textContent(), /Urutan rute/);
   assert.ok((await page.locator("#tripItinerary").innerText()).includes("Buka peta destinasi"));
   pass("Generated planner output stays bilingual after switching languages");
 
