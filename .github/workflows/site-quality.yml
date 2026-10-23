@@ -1,0 +1,45 @@
+name: Site quality gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site-quality:
+    name: Static, responsive and JavaScript checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Audit HTML structure and site requirements
+        run: python scripts/site_qa.py --js-out /tmp/travel-tourism-inline.js
+      - name: Validate inline JavaScript syntax
+        run: node --check /tmp/travel-tourism-inline.js
+      - name: Validate crawler files
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          root = ET.parse("sitemap.xml").getroot()
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [node.text for node in root.findall("sm:url/sm:loc", ns)]
+          assert urls == ["https://travel-tourism-digital-platform.vercel.app/"], urls
+          robots = Path("robots.txt").read_text(encoding="utf-8")
+          assert "User-agent: *" in robots and "Sitemap: https://travel-tourism-digital-platform.vercel.app/sitemap.xml" in robots
+          assert Path("favicon.svg").exists()
+          print("PASS: sitemap XML, robots.txt and favicon")
+          PY
