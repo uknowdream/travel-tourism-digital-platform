@@ -189,14 +189,14 @@ try {
   assert.equal(sharedUrl.searchParams.get("start"), "bali");
   assert.equal(sharedUrl.searchParams.get("stops"), "tokyo");
   assert.ok(!sharedUrl.search.includes("personal") && !sharedUrl.search.includes("Keep%20this"), "Personal notes must not be serialized into the URL");
-  const sharedPage = await context.newPage();
-  sharedPage.on("pageerror", error => runtimeErrors.push("shared-plan: " + error.message));
-  await sharedPage.goto(sharedPayload.url, { waitUntil: "domcontentloaded" });
-  assert.equal(await sharedPage.locator("#planStart").inputValue(), "bali");
-  assert.equal(await sharedPage.locator("#planDate").inputValue(), await page.locator("#planDate").inputValue());
-  assert.equal(await sharedPage.locator("#routeStops .stop-chip").count(), 1);
-  assert.equal(await sharedPage.locator("#planNotes").inputValue(), "");
-  await sharedPage.close();
+  const destinationDeepLinkPage = await context.newPage();
+  destinationDeepLinkPage.on("pageerror", error => runtimeErrors.push("shared-plan: " + error.message));
+  await destinationDeepLinkPage.goto(sharedPayload.url, { waitUntil: "domcontentloaded" });
+  assert.equal(await destinationDeepLinkPage.locator("#planStart").inputValue(), "bali");
+  assert.equal(await destinationDeepLinkPage.locator("#planDate").inputValue(), await page.locator("#planDate").inputValue());
+  assert.equal(await destinationDeepLinkPage.locator("#routeStops .stop-chip").count(), 1);
+  assert.equal(await destinationDeepLinkPage.locator("#planNotes").inputValue(), "");
+  await destinationDeepLinkPage.close();
   pass("Share link restores trip settings and stops without exposing personal notes");
 
   await page.evaluate(() => { window.__printCalled = 0; window.print = () => { window.__printCalled += 1; }; });
@@ -356,14 +356,14 @@ try {
 
   await mobileContext.close();
 
-  const sharedContext = await browser.newContext({ viewport: { width: 390, height: 844 }, timezoneId: "Asia/Jakarta" });
-  const sharedPage = await sharedContext.newPage();
-  sharedPage.on("pageerror", error => runtimeErrors.push(error.message));
-  await sharedPage.goto("http://127.0.0.1:4173/?destination=nusa-penida", { waitUntil: "domcontentloaded" });
-  await sharedPage.locator("#dialogBackdrop.open").waitFor({ timeout: 10000 });
-  assert.match(await sharedPage.locator("#dialogTitle").innerText(), /Nusa Penida/);
+  const destinationDeepLinkContext = await browser.newContext({ viewport: { width: 390, height: 844 }, timezoneId: "Asia/Jakarta" });
+  const destinationDeepLinkPage = await destinationDeepLinkContext.newPage();
+  destinationDeepLinkPage.on("pageerror", error => runtimeErrors.push(error.message));
+  await destinationDeepLinkPage.goto("http://127.0.0.1:4173/?destination=nusa-penida", { waitUntil: "domcontentloaded" });
+  await destinationDeepLinkPage.locator("#dialogBackdrop.open").waitFor({ timeout: 10000 });
+  assert.match(await destinationDeepLinkPage.locator("#dialogTitle").innerText(), /Nusa Penida/);
   pass("Shared destination links open the intended destination detail");
-  await sharedContext.close();
+  await destinationDeepLinkContext.close();
 
   console.log("\nBrowser smoke tests passed.");
 } catch (error) {
