@@ -8,11 +8,11 @@ A bilingual (English / Indonesian) travel-discovery website focused on destinati
 ## Experience and features
 
 - **Global destination catalogue:** 41 destinations across six world regions, including 18 destinations in Indonesia, with search, category and region filters, sorting, and destination details.
-- **Saved places and route builder:** Save favourites and add up to five additional stops. State is stored locally in the current browser where local storage is available.
-- **Bilingual interface:** Toggle English and Indonesian without losing the selected route.
-- **Itinerary builder:** Create a dated daily outline with arrival, destination activities, potential transfer days, and a departure / buffer day. Each stop offers a link to a destination map.
+- **Saved places and route builder:** Save favourites, filter directly to Indonesia, and add up to five additional stops. State is stored locally in the current browser where local storage is available.
+- **Bilingual interface:** Toggle English and Indonesian without losing the selected route. Generate shareable planner links that restore trip settings and stops without adding personal notes to the URL.
+- **Itinerary builder:** Create a dated daily outline with arrival, destination activities, potential transfer days, and a departure / buffer day. Each stop offers a link to a destination map. Print the itinerary or export all-day events to an .ics calendar file.
 - **Planning-budget heuristic:** Presents an indicative USD range based on broad region and budget-style assumptions. It is not supplier pricing, a quote, or a live calculation.
-- **Responsive and accessibility foundations:** Desktop and mobile layouts, keyboard focus styles, accessible destination dialog behavior, and reduced-motion support.
+- **Responsive and accessibility foundations:** Desktop, tablet and mobile layouts, a minimum 10px floor for explicit pixel labels, keyboard focus styles, accessible destination dialog behavior, and reduced-motion support.
 - **SEO and sharing basics:** Page metadata, Open Graph and Twitter card metadata, structured JSON-LD, robots.txt, sitemap.xml, and a custom SVG favicon.
 - **Image resilience:** Images are loaded from Unsplash; a designed fallback appears when a remote image fails.
 
