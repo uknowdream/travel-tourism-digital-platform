@@ -83,7 +83,7 @@ def main():
     card_matches = re.findall(r'id:"([a-z0-9-]+)",name:"([^"]+)"[\s\S]*?image:"(https://images\.unsplash\.com/[^"]+)"', html)
     ids = [m[0] for m in card_matches]
     images = [m[2] for m in card_matches]
-    check(len(card_matches) == 25, f"Expected 25 destination records (found {len(card_matches)})")
+    check(len(card_matches) == 41, f"Expected 41 destination records (found {len(card_matches)})")
     check(len(set(ids)) == len(ids) and len(set(images)) == len(images), "Destination IDs and catalogue images are unique")
 
     for bp in ("@media(max-width:1100px)", "@media(max-width:820px)", "@media(max-width:520px)", "@media(max-width:350px)", "prefers-reduced-motion:reduce"):
