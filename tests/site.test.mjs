@@ -64,6 +64,14 @@ test('hero background uses the first destination card image and carousel data', 
   assert.match(html, /id="sectionDestinationCount"/);
   assert.match(html, /id="indonesiaFilter"/);
   assert.match(html, /id="indonesiaCount"/);
+  assert.match(html, /id="searchCountry"/);
+  assert.match(html, /function moveStop\(id,delta\)/);
+  assert.match(html, /data-move-stop-up/);
+  assert.match(html, /data-move-stop-down/);
+  assert.match(html, /id="heroSlideToggle"/);
+  assert.match(html, /function syncHeroSlideToggle\(\)/);
+  assert.match(html, /srcset=/);
+  assert.match(html, /sizes="\(max-width:600px\)/);
   assert.match(html, /data-region-count="Asia"/);
   assert.ok(html.includes('document.querySelectorAll("[data-region-count]")'));
 });
