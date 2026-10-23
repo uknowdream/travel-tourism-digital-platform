@@ -131,6 +131,13 @@ test('destination comparison, maps and shareable destination deep links are pres
   assert.match(css, /\.compare-grid\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
   assert.match(css, /@media\(max-width:600px\)\{\.compare-panel/);
   assert.equal((html.match(/compareSaved:/g) || []).length, 2, 'Comparison labels must exist in both languages');
+  for (const pair of [
+    ['searchCountry:"Country"', 'searchCountry:"Negara"'],
+    ['countryAll:"All countries"', 'countryAll:"Semua negara"'],
+    ['slideMotionReduced:', 'slideMotionReduced:'],
+    ['slidePlay:', 'slidePlay:'],
+    ['slidePause:', 'slidePause:']
+  ]) for (const token of pair) assert.ok(html.includes(token), 'Missing translated control label: ' + token);
 });
 
 test('the destination image fallback and high-priority hero preload are configured', () => {
