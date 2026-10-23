@@ -93,8 +93,8 @@ try {
   assert.ok((await page.locator("#tripItinerary").innerText()).includes("Buka peta destinasi"));
   pass("Generated planner output stays bilingual after switching languages");
 
-  if (await page.locator("#destinationGrid .destination-card").count() < 33) await page.locator("#showMore").click();
-  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 33);
+  if (await page.locator("#destinationGrid .destination-card").count() # 41) await page.locator("#showMore").click();
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 41);
   await page.locator("#destinationGrid img").evaluateAll(images => images.forEach(img => { img.loading = "eager"; }));
   await page.waitForFunction(() => [...document.querySelectorAll("#destinationGrid .card-image img")].every(img =>
     (img.complete && img.naturalWidth > 0) || img.closest(".card-image")?.classList.contains("image-fallback")
@@ -111,9 +111,9 @@ try {
     gracefulPlaceholders: images.filter(img => img.closest(".card-image")?.classList.contains("image-fallback")).length,
     unresolved: images.filter(img => !(img.complete && img.naturalWidth > 0) && !img.closest(".card-image")?.classList.contains("image-fallback")).length
   }));
-  assert.equal(imageReport.total, 33);
+  assert.equal(imageReport.total, 41);
   assert.equal(imageReport.unresolved, 0);
-  pass("All 33 destination cards have a loaded photo or a deliberate accessible fallback: " + JSON.stringify(imageReport));
+  pass("All 41 destination cards have a loaded photo or a deliberate accessible fallback: " + JSON.stringify(imageReport));
 
   await noHorizontalOverflow(page, "Desktop 1440px");
   assert.deepEqual(runtimeErrors, [], "Runtime JavaScript errors: " + runtimeErrors.join("; "));
@@ -177,6 +177,34 @@ try {
     responsiveMatrix.push(metrics);
   }
   pass("Trip planner viewport matrix 1024 / 820 / 600 / 520 / 390 / 350px: " + JSON.stringify(responsiveMatrix));
+  const fullSiteMatrix = [];
+  for (const width of [1440, 1280, 1100, 1024, 900, 820, 768, 600, 520, 430, 390, 375, 350, 320]) {
+    await mobile.setViewportSize({ width, height: 900 });
+    await mobile.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const metrics = await mobile.evaluate(() => {
+      const selectors = [".header .nav", ".hero", ".search-panel", "#regionBar", "#destinationGrid", ".experience-grid", "#routeGrid", ".planner-card", ".journal-grid", ".faq-layout", ".footer-top"];
+      const outside = [];
+      for (const selector of selectors) {
+        const el = document.querySelector(selector);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && (r.left < -1 || r.right > innerWidth + 1)) {
+          outside.push({ selector, left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) });
+        }
+      }
+      return {
+        width: innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        bodyWidth: document.body.scrollWidth,
+        outside
+      };
+    });
+    assert.ok(metrics.documentWidth <= width + 1, "Full page horizontal overflow at " + width + "px: " + JSON.stringify(metrics));
+    assert.ok(metrics.bodyWidth <= width + 1, "Body horizontal overflow at " + width + "px: " + JSON.stringify(metrics));
+    assert.deepEqual(metrics.outside, [], "A major site section escapes the viewport at " + width + "px: " + JSON.stringify(metrics.outside));
+    fullSiteMatrix.push(metrics);
+  }
+  pass("Whole-site responsive matrix 1440 down to 320px: " + JSON.stringify(fullSiteMatrix));
   await mobile.setViewportSize({ width: 390, height: 844 });
 
 
