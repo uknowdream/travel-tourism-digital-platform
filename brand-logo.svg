@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 680" role="img" aria-label="Syauqim71 Tour and Travel logo">
+<rect width="600" height="680" fill="#000"/>
+<path d="M300 12 Q425 92 560 104 L552 330 Q540 500 300 666 Q60 500 48 330 L40 104 Q175 92 300 12Z" fill="#000" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+<path d="M300 40 Q420 112 535 124 L527 327 Q516 480 300 638 Q84 480 73 327 L65 124 Q180 112 300 40Z" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+<g fill="#fff"><path d="M145 150l9 27 29 0-23 17 9 28-24-17-24 17 9-28-23-17h29z"/><path d="M220 116l10 30h31l-25 18 9 30-25-18-25 18 9-30-25-18h31z"/><path d="M300 83l13 38h40l-32 23 12 38-33-24-33 24 12-38-32-23h40z"/><path d="M380 116l10 30h31l-25 18 9 30-25-18-25 18 9-30-25-18h31z"/><path d="M455 150l9 27h29l-23 17 9 28-24-17-24 17 9-28-23-17h29z"/></g>
+<g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M130 300 Q155 267 205 252 Q255 231 338 239 L401 247 Q422 250 438 275 L451 298" stroke-width="8"/><path d="M123 327 Q200 280 300 282 Q402 282 475 319 Q437 309 410 318 Q379 333 348 322 Q380 351 429 344 Q462 340 484 326 Q499 322 512 351" stroke-width="7"/><path d="M130 299q-22-23-35-9q-8 10 12 15l22 4M451 299q20-24 35-10q9 10-12 15l-23 4" stroke-width="6"/></g>
+<text x="300" y="408" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="83" font-weight="900" font-style="italic" fill="#f10c20" stroke="#fff" stroke-width="3" paint-order="stroke">SyauqiM</text>
+<text x="300" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="900" font-style="italic" letter-spacing="2" fill="#fff">TOUR &amp; TRAVEL</text>
+<text x="300" y="540" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="145" font-weight="900" font-style="italic" fill="#0759d3" stroke="#fff" stroke-width="5" paint-order="stroke">71</text>
+</svg>
