@@ -1,0 +1,12 @@
+{
+  "name": "travel-tourism-digital-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Travel & Tourism Digital Platform — responsive travel website portfolio",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
