@@ -41,6 +41,16 @@ try {
   assert.equal(await page.locator("#destinationGrid .destination-card").count(), 9);
   pass("Desktop landing page and initial destination catalogue render");
 
+  assert.equal(await page.locator("#heroDestinationCount").textContent(), "41");
+  assert.equal(await page.locator("#sectionDestinationCount").textContent(), "41");
+  assert.equal((await page.locator('[data-region-count="Asia"]').textContent()).trim(), "23 places");
+  await page.locator("#searchText").fill("Tumpak Sewu");
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 1);
+  assert.match(await page.locator("#destinationGrid .destination-card").innerText(), /Tumpak Sewu Waterfall/);
+  await page.locator("#searchText").fill("");
+  pass("Dynamic destination totals and search cover the Indonesia additions");
+
+
   await page.locator("#languageToggle").click();
   assert.equal(await page.locator("html").getAttribute("lang"), "id");
   await page.locator("#languageToggle").click();
