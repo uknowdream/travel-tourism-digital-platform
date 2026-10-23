@@ -123,6 +123,8 @@ test('visible typography has a 10px minimum on explicit pixel font sizes', () =>
 test('the destination image fallback and high-priority hero preload are configured', () => {
   assert.match(html, /const IMAGE_FALLBACKS=/);
   assert.match(html, /imageRecoveryAttempt/);
+  assert.match(html, /img\.removeAttribute\("srcset"\)/);
+  assert.match(html, /img\.removeAttribute\("sizes"\)/);
   assert.match(html, /rel="preload" as="image"/);
 });
 
