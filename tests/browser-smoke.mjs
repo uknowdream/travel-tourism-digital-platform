@@ -357,11 +357,11 @@ try {
   await mobileContext.close();
 
   const destinationDeepLinkContext = await browser.newContext({ viewport: { width: 390, height: 844 }, timezoneId: "Asia/Jakarta" });
-  const destinationDeepLinkPage = await destinationDeepLinkContext.newPage();
-  destinationDeepLinkPage.on("pageerror", error => runtimeErrors.push(error.message));
-  await destinationDeepLinkPage.goto("http://127.0.0.1:4173/?destination=nusa-penida", { waitUntil: "domcontentloaded" });
-  await destinationDeepLinkPage.locator("#dialogBackdrop.open").waitFor({ timeout: 10000 });
-  assert.match(await destinationDeepLinkPage.locator("#dialogTitle").innerText(), /Nusa Penida/);
+  const destinationGuidePage = await destinationDeepLinkContext.newPage();
+  destinationGuidePage.on("pageerror", error => runtimeErrors.push(error.message));
+  await destinationGuidePage.goto("http://127.0.0.1:4173/?destination=nusa-penida", { waitUntil: "domcontentloaded" });
+  await destinationGuidePage.locator("#dialogBackdrop.open").waitFor({ timeout: 10000 });
+  assert.match(await destinationGuidePage.locator("#dialogTitle").innerText(), /Nusa Penida/);
   pass("Shared destination links open the intended destination detail");
   await destinationDeepLinkContext.close();
 
