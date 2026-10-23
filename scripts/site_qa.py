@@ -88,7 +88,9 @@ def main():
 
     for bp in ("@media(max-width:1100px)", "@media(max-width:820px)", "@media(max-width:520px)", "@media(max-width:350px)", "prefers-reduced-motion:reduce"):
         check(bp in html, f"Responsive/accessibility rule exists: {bp}")
-    check("grid-template-columns:1fr" in html[html.rfind("@media(max-width:520px)"):], "Mobile destination cards prioritize readable single-column layout")
+    mobile_breakpoints = [m.start() for m in re.finditer(r"@media\(max-width:520px\)", html)]
+    mobile_blocks = [html[start:(mobile_breakpoints[i + 1] if i + 1 < len(mobile_breakpoints) else len(html))] for i, start in enumerate(mobile_breakpoints)]
+    check(any(re.search(r"\.destination-grid\s*\{[^}]*grid-template-columns:\s*1fr", block) for block in mobile_blocks), "Mobile destination cards prioritize readable single-column layout")
     check("function makeBrief(focusOutput=true)" in html and "Indicative daily budget" in html and "not live prices" in html, "Planner generates daily outline and labels budget as indicative")
     check("image-fallback" in html, "Broken images receive a designed fallback state")
 
