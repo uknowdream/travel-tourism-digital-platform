@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import http from "node:http";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { chromium } from "/tmp/ttdp-browser/node_modules/playwright/index.mjs";
+let chromium;
+try { ({ chromium } = await import("playwright")); }
+catch { ({ chromium } = await import("/tmp/ttdp-browser/node_modules/playwright/index.mjs")); }
 
 const root = process.cwd();
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8", ".xml": "application/xml; charset=utf-8" };
