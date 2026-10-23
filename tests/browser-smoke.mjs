@@ -50,6 +50,14 @@ try {
   await page.locator("#searchText").fill("");
   pass("Dynamic destination totals and search cover the Indonesia additions");
 
+  await page.locator("#indonesiaFilter").click();
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 18);
+  assert.equal(await page.locator("#indonesiaFilter").getAttribute("aria-pressed"), "true");
+  await page.locator("#indonesiaFilter").click();
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 9);
+  pass("Indonesia quick filter returns all 18 local destinations and toggles cleanly");
+
+
 
   await page.locator("#languageToggle").click();
   assert.equal(await page.locator("html").getAttribute("lang"), "id");
@@ -81,6 +89,7 @@ try {
   await page.locator("#routeDestinationPicker").selectOption("tokyo");
   await page.locator("#addSelectedStop").click();
   assert.equal(await page.locator("#routeStops .stop-chip").count(), 1);
+  await page.locator("#planNotes").fill("Keep this personal note out of share links");
   await page.locator("#planStart").selectOption("bali");
   await page.locator("#planDuration").selectOption({ label: "6–9 days" });
   await page.locator("#planDate").evaluate(el => {
@@ -97,6 +106,50 @@ try {
   assert.match(await page.locator("#tripResultText").textContent(), /Route sequence/);
   assert.match(await page.locator("#tripItinerary .day-card").first().innerText(), /202\d/);
   pass("Planner builds dated day cards, indicative budget, cross-border warning and destination map links");
+
+  const [calendarDownload] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator("#calendarBrief").click()
+  ]);
+  assert.match(calendarDownload.suggestedFilename(), /\.ics$/);
+  const calendarPath = await calendarDownload.path();
+  assert.ok(calendarPath, "Calendar export should produce a downloadable file");
+  const calendarText = await readFile(calendarPath, "utf8");
+  assert.match(calendarText, /BEGIN:VCALENDAR/);
+  assert.equal((calendarText.match(/BEGIN:VEVENT/g) || []).length, 7);
+  assert.match(calendarText, /DTSTART;VALUE=DATE:/);
+  pass("Calendar export downloads valid seven-day all-day iCalendar events");
+
+  await page.evaluate(() => {
+    window.__testSharePayload = null;
+    Object.defineProperty(navigator, "share", { configurable: true, value: async payload => { window.__testSharePayload = payload; } });
+  });
+  await page.locator("#shareBrief").click();
+  await page.waitForFunction(() => Boolean(window.__testSharePayload));
+  const sharedPayload = await page.evaluate(() => window.__testSharePayload);
+  const sharedUrl = new URL(sharedPayload.url);
+  assert.equal(sharedUrl.searchParams.get("trip"), "1");
+  assert.equal(sharedUrl.searchParams.get("start"), "bali");
+  assert.equal(sharedUrl.searchParams.get("stops"), "tokyo");
+  assert.ok(!sharedUrl.search.includes("personal") && !sharedUrl.search.includes("Keep%20this"), "Personal notes must not be serialized into the URL");
+  const sharedPage = await context.newPage();
+  sharedPage.on("pageerror", error => runtimeErrors.push("shared-plan: " + error.message));
+  await sharedPage.goto(sharedPayload.url, { waitUntil: "domcontentloaded" });
+  assert.equal(await sharedPage.locator("#planStart").inputValue(), "bali");
+  assert.equal(await sharedPage.locator("#planDate").inputValue(), await page.locator("#planDate").inputValue());
+  assert.equal(await sharedPage.locator("#routeStops .stop-chip").count(), 1);
+  assert.equal(await sharedPage.locator("#planNotes").inputValue(), "");
+  await sharedPage.close();
+  pass("Share link restores trip settings and stops without exposing personal notes");
+
+  await page.evaluate(() => { window.__printCalled = 0; window.print = () => { window.__printCalled += 1; }; });
+  await page.locator("#printBrief").click();
+  assert.equal(await page.evaluate(() => window.__printCalled), 1);
+  assert.ok(await page.locator("body").evaluate(el => el.classList.contains("print-trip")));
+  await page.evaluate(() => window.dispatchEvent(new Event("afterprint")));
+  assert.ok(!(await page.locator("body").evaluate(el => el.classList.contains("print-trip"))));
+  pass("Print view activates and restores the page after printing");
+
 
   await page.locator("#languageToggle").click();
   assert.match(await page.locator("#tripResultText").textContent(), /Urutan rute/);
