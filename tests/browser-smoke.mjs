@@ -93,7 +93,7 @@ try {
   assert.ok((await page.locator("#tripItinerary").innerText()).includes("Buka peta destinasi"));
   pass("Generated planner output stays bilingual after switching languages");
 
-  if (await page.locator("#destinationGrid .destination-card").count() # 41) await page.locator("#showMore").click();
+  if (await page.locator("#destinationGrid .destination-card").count() < 41) await page.locator("#showMore").click();
   assert.equal(await page.locator("#destinationGrid .destination-card").count(), 41);
   await page.locator("#destinationGrid img").evaluateAll(images => images.forEach(img => { img.loading = "eager"; }));
   await page.waitForFunction(() => [...document.querySelectorAll("#destinationGrid .card-image img")].every(img =>
