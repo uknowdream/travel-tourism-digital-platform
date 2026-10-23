@@ -233,6 +233,94 @@ input,select,textarea{scroll-margin-top:100px}button,a{touch-action:manipulation
 @media(prefers-reduced-motion:reduce){
  .hero-art-image img,.hero-slide-dot{transition:none!important}
 }
+
+/* Immersive travel hero — the active destination card is the hero background */
+:root{--page-bg:#f7f8f4;--deep:#143a2e;--ink:#18352a;--muted:#617168;--line:#e0e8df}
+html{background:var(--page-bg)}
+body{background:var(--page-bg);color:var(--ink)}
+.microbar{display:none}
+.header{background:rgba(249,250,246,.94);color:#18352a;border-bottom:1px solid #e5eae2;box-shadow:0 2px 18px rgba(18,48,35,.035);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand-copy strong{color:#18352a}.brand-copy small{color:#668073}
+.brand-mark{background:#e7f0e6;color:#1b654c;border-color:#ccdfce}
+.nav-links{color:#52665a}.nav-links a:hover,.nav-links a[aria-current=location]{color:#176448}
+.language{background:#fff;color:#214b39;border-color:#dce6dc}
+.menu-toggle{background:#fff;color:#214b39;border-color:#dce6dc}
+.header .btn-primary{background:#174f3d;color:#fff}.header .btn-primary:hover{background:#22684f}
+.hero-shell{background:var(--page-bg);color:#fff;overflow:visible;padding:18px 0 0}
+.hero-shell:before{display:none}
+.hero{position:relative;display:block;width:min(1500px,calc(100% - 40px));max-width:1500px;margin:0 auto;padding:0;min-height:clamp(500px,43vw,660px);border-radius:clamp(20px,2.2vw,32px);overflow:hidden;isolation:isolate;background:#204536;box-shadow:0 24px 60px rgba(20,44,32,.12)}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(8,26,18,.82) 0%,rgba(8,26,18,.66) 34%,rgba(8,26,18,.28) 63%,rgba(8,26,18,.06) 100%),linear-gradient(0deg,rgba(5,23,16,.48),transparent 42%)}
+.hero-copy{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;width:min(820px,74%);max-width:820px;min-height:clamp(500px,43vw,660px);padding:clamp(36px,6.1vw,88px);color:#fff}
+.hero-kicker{background:rgba(9,32,23,.42);border-color:rgba(231,249,233,.34);color:#edf7ef;font-size:10px;letter-spacing:.13em;padding:9px 14px}
+.hero-kicker b{color:#dafa8b}
+.hero h1{max-width:760px;font-size:clamp(43px,5.9vw,82px);line-height:1.02;letter-spacing:-.065em;margin:24px 0 18px;text-wrap:balance}
+.hero h1 em{color:#dafa8b}
+.hero-description{max-width:56ch;font-size:clamp(14px,1.2vw,17px);line-height:1.82;color:rgba(248,252,247,.91);margin-bottom:26px}
+.hero-actions{gap:12px}
+.hero-actions .btn{min-height:47px;padding:14px 20px;font-size:12px}
+.hero-actions .btn-primary{background:#dafa8b;color:#203428}
+.hero-actions .btn-primary:hover{background:#e8ffc0}
+.hero-actions .btn-quiet{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.42);color:#fff;backdrop-filter:blur(8px)}
+.hero-meta{gap:22px;border-top:1px solid rgba(255,255,255,.22);margin-top:32px;padding-top:21px}
+.hero-metric{gap:10px}.metric-mark{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.25);color:#e0f8bb}
+.hero-metric strong{font-size:15px;color:#fff}.hero-metric small{font-size:10px;color:rgba(245,250,245,.78)}
+.hero-art{position:absolute;inset:0;z-index:0;width:auto;max-width:none;height:100%;min-height:0;aspect-ratio:auto;margin:0;pointer-events:none}
+.hero-art-image{position:absolute;inset:0;border:0;border-radius:0;background:#244737;box-shadow:none}
+.hero-art-image img{width:100%;height:100%;object-fit:cover;object-position:center 52%;filter:none;opacity:1;transform:none}
+.hero-art-image img.is-changing{opacity:.08;transform:scale(1.02)}
+.hero-art-image:after{content:none}
+.art-topline{left:auto;right:clamp(18px,3vw,38px);top:clamp(18px,2.5vw,30px);justify-content:flex-end;z-index:4;gap:9px}
+.glass-label{background:rgba(9,31,23,.55);border-color:rgba(255,255,255,.4);font-size:10px;letter-spacing:.08em;padding:9px 13px}
+.live-pill{background:#f1ffd7;color:#234331;font-size:10px;padding:10px 13px}
+.art-bottom{display:none}
+.floating-insight{display:none}
+.hero-slideshow-controls{position:absolute;top:auto;right:clamp(18px,2.5vw,30px);bottom:clamp(18px,2.5vw,30px);left:auto;z-index:8;pointer-events:auto}
+.hero-slide-arrow{width:36px;height:36px}.hero-slide-dots{gap:7px}
+.hero-slide-dot{width:7px;height:7px}.hero-slide-dot[aria-current="true"]{width:22px}
+.search-dock{margin-top:22px}
+@media(max-width:820px){
+ .hero-shell{padding-top:12px}
+ .hero{width:calc(100% - 28px);min-height:560px}
+ .hero-copy{width:min(100%,760px);min-height:560px;padding:clamp(26px,6vw,48px)}
+ .hero h1{font-size:clamp(44px,8vw,66px);max-width:13ch}
+ .hero-description{max-width:45ch;font-size:15px}
+ .hero-meta{gap:14px;margin-top:25px;padding-top:18px}
+ .hero-slideshow-controls{right:16px;bottom:16px}
+ .art-topline{top:14px;right:14px}
+}
+@media(max-width:520px){
+ .header .nav{height:66px}.nav{gap:10px}.brand{gap:8px}.brand-mark{width:35px;height:35px;border-radius:11px}
+ .brand-copy strong{font-size:11px}.brand-copy small{font-size:7px;letter-spacing:.13em}
+ .nav-actions{gap:6px}.language{padding:8px 9px;font-size:9px}.menu-toggle{width:36px;height:36px}
+ .hero-shell{padding-top:10px}
+ .hero{width:calc(100% - 20px);min-height:590px;border-radius:20px}
+ .hero-copy{min-height:590px;width:100%;padding:30px 22px 82px;justify-content:center}
+ .hero-kicker{font-size:8px;letter-spacing:.08em;padding:8px 10px;max-width:100%}
+ .hero h1{max-width:12ch;font-size:clamp(39px,10.7vw,53px);line-height:1.04;margin:22px 0 16px}
+ .hero-description{font-size:14px;line-height:1.72;max-width:37ch;margin-bottom:21px}
+ .hero-actions{width:100%;gap:9px}.hero-actions .btn{min-height:45px;padding:12px 13px;font-size:10px}
+ .hero-meta{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-top:23px;padding-top:16px}
+ .hero-metric{gap:6px}.metric-mark{width:27px;height:27px;font-size:11px;border-radius:8px}
+ .hero-metric strong{font-size:12px}.hero-metric small{font-size:8px;max-width:82px;line-height:1.35}
+ .hero:after{background:linear-gradient(90deg,rgba(7,23,16,.80),rgba(7,23,16,.48) 66%,rgba(7,23,16,.25)),linear-gradient(0deg,rgba(5,23,16,.56),transparent 44%)}
+ .art-topline{top:12px;left:12px;right:12px;gap:6px;justify-content:flex-end}
+ .glass-label{display:none}.live-pill{font-size:8px;padding:8px 10px}
+ .hero-slideshow-controls{right:12px;bottom:12px;gap:5px;padding:4px}
+ .hero-slide-arrow{width:29px;height:29px;font-size:14px}
+ .hero-slide-dots{gap:4px;padding:0 2px}.hero-slide-dot{width:5px;height:5px}.hero-slide-dot[aria-current="true"]{width:15px}
+ .search-dock{margin-top:18px}
+}
+@media(max-width:370px){
+ .hero{width:calc(100% - 16px);min-height:560px}
+ .hero-copy{min-height:560px;padding:28px 17px 78px}
+ .hero h1{font-size:38px}
+ .hero-actions .btn{padding:11px 10px;font-size:9px}
+ .hero-meta{gap:9px}.hero-metric small{font-size:7px}
+ .hero-slideshow-controls{right:9px;bottom:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-art-image img,.hero-slide-dot{transition:none!important}
+}
 </style></head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skipLink">Skip to main content</a>
@@ -247,7 +335,7 @@ input,select,textarea{scroll-margin-top:100px}button,a{touch-action:manipulation
 <section id="home" class="hero-shell" aria-labelledby="heroTitle"><div class="wrap hero">
 <div class="hero-copy"><span class="hero-kicker"><b>TTDP</b> <span data-i18n="heroKicker">GLOBAL TRAVEL EXPLORER</span></span><h1 id="heroTitle" data-i18n="heroTitle">Your world is waiting.<br><em>Explore it better.</em></h1><p class="hero-description" data-i18n="heroDescription">Move beyond the familiar. Compare remarkable places, understand what makes each destination distinct and turn inspiration into a practical travel plan.</p><div class="hero-actions"><a class="btn btn-primary" href="#destinations" data-i18n="heroPrimary">Explore destinations ↗</a><a class="btn btn-quiet" href="#planner" data-i18n="heroSecondary">Build my itinerary →</a></div>
 <div class="hero-meta"><div class="hero-metric"><span class="metric-mark" aria-hidden="true">◎</span><div><strong id="heroDestinationCount">25</strong><small data-i18n="heroMetricOne">destination guides</small></div></div><div class="hero-metric"><span class="metric-mark" aria-hidden="true">⌘</span><div><strong>6</strong><small data-i18n="heroMetricTwo">world regions</small></div></div><div class="hero-metric"><span class="metric-mark" aria-hidden="true">↗</span><div><strong>EN / ID</strong><small data-i18n="heroMetricThree">bilingual discovery</small></div></div></div></div>
-<div class="hero-art" id="heroSlideshow" aria-label="Featured travel destinations"><div class="hero-art-image"><img id="heroSlideImage" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1500&q=86" alt="Turquoise alpine lake surrounded by dramatic mountains" fetchpriority="high" decoding="async"><div class="art-topline"><span class="glass-label" id="heroSlideLabel">THE WORLD, OPENED UP</span><span class="live-pill" id="heroSlidePill">Explore freely</span></div><div class="art-bottom"><div><small id="heroSlideEyebrow">YOUR NEXT CHAPTER STARTS HERE</small><strong id="heroSlideTitle">More perspective.<br>Less guesswork.</strong></div><span class="art-index" id="heroSlideIndex" aria-hidden="true">01 / 05</span></div></div><div class="floating-insight"><small data-i18n="insightTitle">A better way to plan</small><div class="insight-row"><span class="insight-icon" aria-hidden="true">⌕</span><div><strong data-i18n="insightOne">Discover with context</strong><span data-i18n="insightOneSub">Places, regions, experiences</span></div></div><div class="insight-row"><span class="insight-icon" aria-hidden="true">♡</span><div><strong data-i18n="insightTwo">Keep your shortlist</strong><span data-i18n="insightTwoSub">Saved in this browser</span></div></div><div class="insight-row"><span class="insight-icon" aria-hidden="true">↗</span><div><strong data-i18n="insightThree">Shape a route</strong><span data-i18n="insightThreeSub">Export a personal trip brief</span></div></div></div><div class="hero-slideshow-controls" aria-label="Featured destination slideshow controls"><button type="button" class="hero-slide-arrow" id="heroSlidePrev" aria-label="Previous featured destination">‹</button><div class="hero-slide-dots" id="heroSlideDots" role="group" aria-label="Choose featured destination"></div><button type="button" class="hero-slide-arrow" id="heroSlideNext" aria-label="Next featured destination">›</button></div><span id="heroSlideStatus" class="hero-slideshow-status" aria-live="polite"></span></div>
+<div class="hero-art" id="heroSlideshow" aria-label="Featured travel destinations"><div class="hero-art-image"><img id="heroSlideImage" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Lush green tropical landscape in Bali" fetchpriority="high" decoding="async"><div class="art-topline"><span class="glass-label" id="heroSlideLabel">THE WORLD, OPENED UP</span><span class="live-pill" id="heroSlidePill">Explore freely</span></div><div class="art-bottom"><div><small id="heroSlideEyebrow">YOUR NEXT CHAPTER STARTS HERE</small><strong id="heroSlideTitle">More perspective.<br>Less guesswork.</strong></div><span class="art-index" id="heroSlideIndex" aria-hidden="true">01 / 05</span></div></div><div class="floating-insight"><small data-i18n="insightTitle">A better way to plan</small><div class="insight-row"><span class="insight-icon" aria-hidden="true">⌕</span><div><strong data-i18n="insightOne">Discover with context</strong><span data-i18n="insightOneSub">Places, regions, experiences</span></div></div><div class="insight-row"><span class="insight-icon" aria-hidden="true">♡</span><div><strong data-i18n="insightTwo">Keep your shortlist</strong><span data-i18n="insightTwoSub">Saved in this browser</span></div></div><div class="insight-row"><span class="insight-icon" aria-hidden="true">↗</span><div><strong data-i18n="insightThree">Shape a route</strong><span data-i18n="insightThreeSub">Export a personal trip brief</span></div></div></div><div class="hero-slideshow-controls" aria-label="Featured destination slideshow controls"><button type="button" class="hero-slide-arrow" id="heroSlidePrev" aria-label="Previous featured destination">‹</button><div class="hero-slide-dots" id="heroSlideDots" role="group" aria-label="Choose featured destination"></div><button type="button" class="hero-slide-arrow" id="heroSlideNext" aria-label="Next featured destination">›</button></div><span id="heroSlideStatus" class="hero-slideshow-status" aria-live="polite"></span></div>
 </div></section>
 <section class="search-dock wrap" aria-label="Destination search"><form id="quickSearch" class="search-panel" role="search"><div class="search-field"><label for="searchText" data-i18n="searchDestination">Destination or country</label><input id="searchText" type="search" placeholder="Try Tokyo, Italy or islands…" data-i18n-placeholder="searchPlaceholder" autocomplete="off"></div><div class="search-field"><label for="searchCategory" data-i18n="searchExperience">Travel experience</label><select id="searchCategory"><option value="all" data-i18n="catAll">All experiences</option><option value="culture" data-i18n="catCulture">Culture & heritage</option><option value="nature" data-i18n="catNature">Nature & adventure</option><option value="coast" data-i18n="catCoast">Islands & coast</option><option value="city" data-i18n="catCity">Cities & food</option><option value="wildlife" data-i18n="catWildlife">Wildlife & nature</option></select></div><div class="search-field"><label for="searchRegion" data-i18n="searchRegion">World region</label><select id="searchRegion"><option value="all" data-i18n="regionAll">Everywhere</option><option value="Asia" data-i18n="regionAsia">Asia</option><option value="Europe" data-i18n="regionEurope">Europe</option><option value="Africa" data-i18n="regionAfrica">Africa</option><option value="North America" data-i18n="regionNorthAmerica">North America</option><option value="South America" data-i18n="regionSouthAmerica">South America</option><option value="Oceania" data-i18n="regionOceania">Oceania</option></select></div><button class="btn btn-primary" type="submit"><span data-i18n="searchButton">Find my destination</span><span aria-hidden="true">↗</span></button></form></section>
 <section class="section wrap" id="destinations" aria-labelledby="destTitle"><div class="section-head"><div class="section-head-main"><span class="eyebrow" data-i18n="destEyebrow">THE GLOBAL COLLECTION</span><h2 class="section-title" id="destTitle" data-i18n="destTitle">Big world. <em>Distinct experiences.</em></h2></div><p class="section-description" data-i18n="destDescription">Explore a balanced mix of city culture, living heritage, island escapes and extraordinary landscapes. Every guide offers a starting point for research—not a substitute for checking current local requirements.</p><div class="head-aside"><span id="sectionDestinationCount" class="section-count">25</span></div></div>
@@ -435,23 +523,24 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#dialogBackdr
 if(e.key==="Tab"&&$("#dialogBackdrop").classList.contains("open")){const dialog=$("#destinationDialog"),focusable=Array.from(dialog.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(el=>!el.hidden);if(!focusable.length){e.preventDefault();dialog.focus();return}const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
 if(e.key==="Tab"&&$("#mobileNav").classList.contains("open")){const items=Array.from($("#mobileNav").querySelectorAll("a"));if(items.length){if(e.shiftKey&&document.activeElement===items[0]){e.preventDefault();$("#menuToggle").focus()}else if(!e.shiftKey&&document.activeElement===items[items.length-1]){e.preventDefault();$("#menuToggle").focus()}}}});
 const heroSlides=[
- {src:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1500&q=86",alt:{en:"Turquoise alpine lake surrounded by dramatic mountains",id:"Danau pegunungan berwarna pirus yang dikelilingi gunung dramatis"},label:{en:"THE WORLD, OPENED UP",id:"DUNIA TERBUKA LEBAR"},pill:{en:"Explore freely",id:"Jelajahi bebas"},eyebrow:{en:"YOUR NEXT CHAPTER STARTS HERE",id:"BABAK BERIKUTNYA DIMULAI DI SINI"},title:{en:"More perspective.<br>Less guesswork.",id:"Perspektif lebih luas.<br>Rencana lebih matang."}},
- {src:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1500&q=86",alt:{en:"Colourful coastal villages overlooking the Italian Riviera",id:"Desa pesisir berwarna-warni menghadap Italian Riviera"},label:{en:"COASTLINES & CULTURE",id:"PESISIR & BUDAYA"},pill:{en:"Find your rhythm",id:"Temukan ritmemu"},eyebrow:{en:"A PLACE WITH A DIFFERENT PACE",id:"TEMPAT DENGAN RITME BERBEDA"},title:{en:"Follow the feeling.<br>Find your place.",id:"Ikuti rasa ingin tahu.<br>Temukan tempatmu."}},
- {src:"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1500&q=86",alt:{en:"Traditional Kyoto streets and Japanese architecture",id:"Jalan tradisional Kyoto dengan arsitektur Jepang"},label:{en:"HERITAGE & DISCOVERY",id:"WARISAN & PENJELAJAHAN"},pill:{en:"Go a little deeper",id:"Jelajahi lebih dalam"},eyebrow:{en:"BEYOND THE CHECKLIST",id:"LEBIH DARI SEKADAR DAFTAR"},title:{en:"Meet the culture.<br>Keep the wonder.",id:"Kenali budayanya.<br>Jaga rasa takjub."}},
- {src:"https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1500&q=86",alt:{en:"Mountain peaks under a star-filled night sky",id:"Puncak gunung di bawah langit malam penuh bintang"},label:{en:"WIDE OPEN SPACES",id:"ALAM TERBUKA"},pill:{en:"Take the scenic route",id:"Pilih jalur indah"},eyebrow:{en:"ROOM TO RESET YOUR PERSPECTIVE",id:"RUANG UNTUK MELIHAT DUNIA BERBEDA"},title:{en:"Make room for<br>the unexpected.",id:"Beri ruang untuk<br>kejutan indah."}},
- {src:"https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1500&q=86",alt:{en:"Traveller looking toward a sweeping mountain landscape",id:"Wisatawan memandang bentang pegunungan luas"},label:{en:"YOUR JOURNEY, YOUR WAY",id:"PERJALANAN DENGAN CARA SENDIRI"},pill:{en:"Start exploring",id:"Mulai menjelajah"},eyebrow:{en:"INSPIRATION THAT BECOMES A PLAN",id:"INSPIRASI YANG MENJADI RENCANA"},title:{en:"Dream a little.<br>Plan a little smarter.",id:"Bermimpi lebih jauh.<br>Rencanakan lebih cerdas."}}
+ {destinationId:"bali",alt:{en:"Turquoise alpine lake surrounded by dramatic mountains",id:"Danau pegunungan berwarna pirus yang dikelilingi gunung dramatis"},label:{en:"THE WORLD, OPENED UP",id:"DUNIA TERBUKA LEBAR"},pill:{en:"Explore freely",id:"Jelajahi bebas"},eyebrow:{en:"YOUR NEXT CHAPTER STARTS HERE",id:"BABAK BERIKUTNYA DIMULAI DI SINI"},title:{en:"More perspective.<br>Less guesswork.",id:"Perspektif lebih luas.<br>Rencana lebih matang."}},
+ {destinationId:"kyoto",alt:{en:"Colourful coastal villages overlooking the Italian Riviera",id:"Desa pesisir berwarna-warni menghadap Italian Riviera"},label:{en:"COASTLINES & CULTURE",id:"PESISIR & BUDAYA"},pill:{en:"Find your rhythm",id:"Temukan ritmemu"},eyebrow:{en:"A PLACE WITH A DIFFERENT PACE",id:"TEMPAT DENGAN RITME BERBEDA"},title:{en:"Follow the feeling.<br>Find your place.",id:"Ikuti rasa ingin tahu.<br>Temukan tempatmu."}},
+ {destinationId:"tokyo",alt:{en:"Traditional Kyoto streets and Japanese architecture",id:"Jalan tradisional Kyoto dengan arsitektur Jepang"},label:{en:"HERITAGE & DISCOVERY",id:"WARISAN & PENJELAJAHAN"},pill:{en:"Go a little deeper",id:"Jelajahi lebih dalam"},eyebrow:{en:"BEYOND THE CHECKLIST",id:"LEBIH DARI SEKADAR DAFTAR"},title:{en:"Meet the culture.<br>Keep the wonder.",id:"Kenali budayanya.<br>Jaga rasa takjub."}},
+ {destinationId:"bangkok",alt:{en:"Mountain peaks under a star-filled night sky",id:"Puncak gunung di bawah langit malam penuh bintang"},label:{en:"WIDE OPEN SPACES",id:"ALAM TERBUKA"},pill:{en:"Take the scenic route",id:"Pilih jalur indah"},eyebrow:{en:"ROOM TO RESET YOUR PERSPECTIVE",id:"RUANG UNTUK MELIHAT DUNIA BERBEDA"},title:{en:"Make room for<br>the unexpected.",id:"Beri ruang untuk<br>kejutan indah."}},
+ {destinationId:"singapore",alt:{en:"Traveller looking toward a sweeping mountain landscape",id:"Wisatawan memandang bentang pegunungan luas"},label:{en:"YOUR JOURNEY, YOUR WAY",id:"PERJALANAN DENGAN CARA SENDIRI"},pill:{en:"Start exploring",id:"Mulai menjelajah"},eyebrow:{en:"INSPIRATION THAT BECOMES A PLAN",id:"INSPIRASI YANG MENJADI RENCANA"},title:{en:"Dream a little.<br>Plan a little smarter.",id:"Bermimpi lebih jauh.<br>Rencanakan lebih cerdas."}}
 ];
 let heroSlideIndex=0,heroSlideTimer=null,heroSlidePaused=false;
 const heroImage=$("#heroSlideImage"),heroDots=$("#heroSlideDots"),heroIndex=$("#heroSlideIndex"),heroStatus=$("#heroSlideStatus"),heroSlideshow=$("#heroSlideshow");
 function paintHeroSlide(index,announce=false){
  heroSlideIndex=(index+heroSlides.length)%heroSlides.length;
- const slide=heroSlides[heroSlideIndex],locale=lang==="id"?"id":"en";if(!slide)return;
+ const slide=heroSlides[heroSlideIndex],destination=byId(slide.destinationId),locale=lang==="id"?"id":"en";if(!slide)return;
+ const imageUrl=destination?.image||slide.src,imageAlt=destination?.alt?.[locale]||slide.alt[locale];
  heroImage.classList.add("is-changing");
- const nextImage=new Image();nextImage.decoding="async";nextImage.onload=()=>{heroImage.src=slide.src;heroImage.alt=slide.alt[locale];heroImage.classList.remove("is-changing")};nextImage.onerror=()=>{heroImage.classList.remove("is-changing");heroImage.alt=slide.alt[locale]};
- nextImage.src=slide.src;
- $("#heroSlideLabel").textContent=slide.label[locale];$("#heroSlidePill").textContent=slide.pill[locale];$("#heroSlideEyebrow").textContent=slide.eyebrow[locale];$("#heroSlideTitle").innerHTML=slide.title[locale];heroIndex.textContent=String(heroSlideIndex+1).padStart(2,"0")+" / "+String(heroSlides.length).padStart(2,"0");
- heroDots.querySelectorAll("button").forEach((dot,i)=>{dot.setAttribute("aria-current",String(i===heroSlideIndex));dot.setAttribute("aria-label",(locale==="id"?"Tampilkan slide ":"Show slide ")+(i+1))});
- if(announce)heroStatus.textContent=(locale==="id"?"Slide ":"Slide ")+(heroSlideIndex+1)+": "+slide.alt[locale];
+ const nextImage=new Image();nextImage.decoding="async";nextImage.onload=()=>{heroImage.src=imageUrl;heroImage.alt=imageAlt;heroImage.classList.remove("is-changing")};nextImage.onerror=()=>{heroImage.classList.remove("is-changing");heroImage.alt=imageAlt};
+ nextImage.src=imageUrl;
+ $("#heroSlideLabel").textContent=destination?(destination.name+" · "+destination.country[locale].toUpperCase()):slide.label[locale];$("#heroSlidePill").textContent=slide.pill[locale];$("#heroSlideEyebrow").textContent=slide.eyebrow[locale];$("#heroSlideTitle").innerHTML=slide.title[locale];heroIndex.textContent=String(heroSlideIndex+1).padStart(2,"0")+" / "+String(heroSlides.length).padStart(2,"0");
+ heroDots.querySelectorAll("button").forEach((dot,i)=>{dot.setAttribute("aria-current",String(i===heroSlideIndex));dot.setAttribute("aria-label",(locale==="id"?"Tampilkan slide ":"Show slide ")+(i+1)+" · "+(byId(heroSlides[i].destinationId)?.name||""))});
+ if(announce)heroStatus.textContent=(locale==="id"?"Slide ":"Slide ")+(heroSlideIndex+1)+": "+imageAlt;
 }
 function stopHeroSlideshow(){if(heroSlideTimer){clearInterval(heroSlideTimer);heroSlideTimer=null}}
 function startHeroSlideshow(){stopHeroSlideshow();if(heroSlidePaused||document.hidden||matchMedia("(prefers-reduced-motion: reduce)").matches)return;heroSlideTimer=setInterval(()=>paintHeroSlide(heroSlideIndex+1),6500)}
