@@ -95,6 +95,11 @@ def main():
     check("image-fallback" in html and "const IMAGE_FALLBACKS" in html, "Broken images have category-aware recovery paths")
     check(all(x in html for x in ["function makeShareUrl()", "function loadSharedPlanFromUrl()", "function downloadCalendar()", "function printBrief()"]), "Shareable planner, calendar export and print features exist")
     check('data-country-search="Indonesia"' in html and 'id="indonesiaCount"' in html, "Indonesia quick filter exists")
+    check('id="searchCountry"' in html and 'country:"all"' in html and 'd.country.en===state.country' in html, "Country dropdown filters the destination catalogue")
+    check('function moveStop(id,delta)' in html and 'data-move-stop-up' in html and 'data-move-stop-down' in html, "Route stops can be reordered")
+    check('id="heroSlideToggle"' in html and 'function syncHeroSlideToggle()' in html, "Carousel has accessible pause/play control")
+    check("srcset=" in html and 'sizes="(max-width:600px)' in html, "Destination cards use responsive image sources")
+
     check('rel="preload" as="image"' in html, "Hero image is preloaded")
     check("image-fallback" in html, "Broken images receive a designed fallback state")
 
