@@ -93,6 +93,7 @@ def main():
     check(any(re.search(r"\.destination-grid\s*\{[^}]*grid-template-columns:\s*1fr", block) for block in mobile_blocks), "Mobile destination cards prioritize readable single-column layout")
     check("function makeBrief(focusOutput=true)" in html and "Indicative daily budget" in html and "not live prices" in html, "Planner generates daily outline and labels budget as indicative")
     check("image-fallback" in html and "const IMAGE_FALLBACKS" in html, "Broken images have category-aware recovery paths")
+    check('img.removeAttribute("srcset")' in html and 'img.removeAttribute("sizes")' in html, "Failed responsive images clear srcset before recovery")
     check(all(x in html for x in ["function makeShareUrl()", "function loadSharedPlanFromUrl()", "function downloadCalendar()", "function printBrief()"]), "Shareable planner, calendar export and print features exist")
     check('data-country-search="Indonesia"' in html and 'id="indonesiaCount"' in html, "Indonesia quick filter exists")
     check('id="searchCountry"' in html and 'country:"all"' in html and 'd.country.en===state.country' in html, "Country dropdown filters the destination catalogue")
