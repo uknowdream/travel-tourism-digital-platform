@@ -72,7 +72,7 @@ def main():
     check(not unsafe, "External new-tab links use noopener and noreferrer" + (f" (issues: {unsafe})" if unsafe else ""))
 
     title = re.search(r"<title>(.*?)</title>", html, re.I | re.S)
-    check(bool(title and "Travel &amp; Tourism Digital Platform" in title.group(1)), "Document title includes product name")
+    check(bool(title and re.search(r"Travel\\s*&(?:amp;)?\\s*Tourism Digital Platform", title.group(1))), "Document title includes product name")
     check('name="description"' in html and 'property="og:title"' in html and 'property="og:image"' in html, "SEO and social preview metadata present")
 
     ids_required = ["destinationGrid", "plannerForm", "tripEstimate", "tripWarnings", "tripItinerary", "tripResult", "routeDestinationPicker"]
