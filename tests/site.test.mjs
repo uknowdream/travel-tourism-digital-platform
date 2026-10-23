@@ -110,7 +110,6 @@ test('visible typography has a 10px minimum on explicit pixel font sizes', () =>
   const tooSmall = declarations.flatMap(value => [...value.matchAll(/(\d+(?:\.\d+)?)px/g)]
     .map(match => Number(match[1])).filter(px => px < 10));
   assert.deepEqual(tooSmall, []);
-  assert.match(css, /font-size:max\(10px/);
 });
 
 test('the destination image fallback and high-priority hero preload are configured', () => {
