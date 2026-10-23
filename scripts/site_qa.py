@@ -97,6 +97,7 @@ def main():
     check(all(x in html for x in ["function makeShareUrl()", "function loadSharedPlanFromUrl()", "function downloadCalendar()", "function printBrief()"]), "Shareable planner, calendar export and print features exist")
     check('data-country-search="Indonesia"' in html and 'id="indonesiaCount"' in html, "Indonesia quick filter exists")
     check('const active=state.country==="Indonesia"' in html, "Indonesia quick filter uses country state consistently")
+    check(all(x in html for x in ['searchCountry:"Country"', 'searchCountry:"Negara"', 'countryAll:"All countries"', 'countryAll:"Semua negara"', "slideMotionReduced:", "slidePlay:", "slidePause:"]), "Country and carousel controls are translated in English and Indonesian")
     check(all(x in html for x in ["function renderCompare()", "function toggleCompare(id)", "ttdp:compare"]), "Saved destination comparison persists locally")
     check(all(x in html for x in ["function shareDestination(id)", "function loadSharedDestinationFromUrl()", "google.com/maps/search"]), "Destination map and shareable deep-link actions exist")
     check(".compare-grid{display:grid" in html and "@media(max-width:600px)" in html, "Destination comparison panel has mobile layout rules")
