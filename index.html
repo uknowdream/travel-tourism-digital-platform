@@ -345,6 +345,129 @@ body{background:var(--page-bg);color:var(--ink)}
 .hero-art{pointer-events:auto}
 .hero-art-image:after{pointer-events:none}
 
+
+/* Trip workspace responsive system: field grid, actions and results at every breakpoint */
+.planner-section{overflow:hidden}
+.planner-layout{width:min(1240px,calc(100% - 56px));margin-inline:auto;grid-template-columns:minmax(0,.74fr) minmax(0,1.26fr);gap:clamp(24px,4.4vw,62px);align-items:start}
+.planner-copy,.planner-card,.planner-card-head,.planner-fields,.field,.planner-actions,.trip-result,.trip-estimate,.trip-itinerary{min-width:0;max-width:100%}
+.planner-copy{position:sticky;top:104px}
+.planner-copy .section-title{font-size:clamp(34px,3.6vw,50px);line-height:1.1;text-wrap:balance}
+.planner-copy>p{font-size:15px;line-height:1.8}
+.planner-step{font-size:12px;line-height:1.6}
+.planner-card{width:100%;padding:clamp(20px,2.6vw,32px);border-radius:22px}
+.planner-card-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.planner-card-head>div{min-width:0;flex:1 1 240px}
+.planner-card-head h3{font-size:clamp(22px,2.2vw,27px);line-height:1.2}
+.planner-card-head p{font-size:13px;line-height:1.7}
+.step-badge{max-width:100%;white-space:nowrap}
+.planner-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field,.field.wide{min-width:0}
+.field.wide{grid-column:1/-1}
+.field label{font-size:11px;line-height:1.45;letter-spacing:.06em}
+.field input,.field select,.field textarea{width:100%;max-width:100%;min-width:0;min-height:47px;font-size:15px;padding:12px 13px}
+.field textarea{min-height:116px}
+.field-help{font-size:11px;line-height:1.65;overflow-wrap:anywhere}
+.planner-route-head{align-items:flex-start;flex-wrap:wrap}
+.planner-route-head strong{font-size:13px;line-height:1.4}
+.planner-route-head span{font-size:11px}
+.stop-list{align-items:flex-start;gap:8px}
+.stop-chip{max-width:100%;overflow-wrap:anywhere;white-space:normal;font-size:11px}
+.stop-chip>span{min-width:0;overflow-wrap:anywhere}
+.planner-actions{display:flex;align-items:stretch;gap:9px;flex-wrap:wrap}
+.route-picker{flex:1 1 230px;min-width:0;max-width:100%}
+.route-picker select{width:100%;max-width:100%;min-width:0;min-height:46px;font-size:14px;white-space:normal}
+.planner-actions .btn{min-height:44px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.planner-submit{min-height:50px;font-size:14px}
+.planner-disclaimer{font-size:12px;line-height:1.75;overflow-wrap:anywhere}
+.trip-result{padding:clamp(14px,2.2vw,24px)}
+.trip-result-head{align-items:flex-start}
+.trip-result h4{font-size:clamp(18px,2.2vw,23px);line-height:1.3;overflow-wrap:anywhere}
+.trip-estimate{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.trip-estimate-main,.trip-estimate-total{min-width:0;padding:clamp(12px,1.5vw,18px)}
+.trip-estimate label,.trip-estimate small{font-size:12px;overflow-wrap:anywhere}
+.trip-estimate strong,.trip-estimate .estimate-total-value{font-size:clamp(18px,2.2vw,27px);overflow-wrap:anywhere}
+.trip-estimate-note{font-size:12px;overflow-wrap:anywhere}
+.trip-itinerary{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.day-card{min-width:0;gap:10px;padding:clamp(11px,1.4vw,16px)}
+.day-number{width:36px;height:36px;border-radius:10px}
+.day-copy{min-width:0;overflow-wrap:anywhere}
+.day-copy small{font-size:10px;line-height:1.5;letter-spacing:.05em;overflow-wrap:anywhere}
+.day-copy h5{font-size:15px;line-height:1.35;overflow-wrap:anywhere}
+.day-copy p{font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.day-map{min-height:42px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.trip-result-actions{display:flex;flex-wrap:wrap;gap:9px}
+.trip-result-actions .btn{min-height:44px;flex:1 1 130px;white-space:normal}
+@media(max-width:1100px) and (min-width:821px){
+ .planner-layout{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:24px}
+ .planner-copy{position:static}
+ .planner-steps{grid-template-columns:1fr}
+ .planner-card{padding:22px}
+ .planner-fields{gap:11px}
+ .planner-card-head h3{font-size:23px}
+}
+@media(max-width:820px){
+ .planner-layout{width:calc(100% - 36px);grid-template-columns:minmax(0,1fr);gap:24px}
+ .planner-copy{position:static;max-width:760px}
+ .planner-copy .section-title{font-size:clamp(32px,6.5vw,45px);max-width:17ch}
+ .planner-copy>p{max-width:66ch;font-size:15px}
+ .planner-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:21px}
+ .planner-step{align-items:flex-start;gap:9px;font-size:12px}
+ .step-dot{width:29px;height:29px}
+ .planner-card{padding:clamp(18px,3.2vw,26px)}
+ .planner-card-head h3{font-size:24px}
+ .planner-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .trip-itinerary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .planner-layout{width:calc(100% - 28px);gap:20px}
+ .planner-copy .section-title{font-size:clamp(30px,8vw,38px);line-height:1.12}
+ .planner-copy>p{font-size:14px;line-height:1.75}
+ .planner-steps{grid-template-columns:minmax(0,1fr);gap:8px}
+ .planner-step{align-items:center;font-size:12px}
+ .planner-card{padding:16px;border-radius:17px;box-shadow:0 12px 28px rgba(19,43,36,.07)}
+ .planner-card-head{gap:10px;margin-bottom:17px}
+ .planner-card-head>div{flex-basis:100%}
+ .planner-card-head h3{font-size:22px}
+ .planner-card-head p{font-size:12px}
+ .step-badge{font-size:9px;order:-1}
+ .planner-fields{grid-template-columns:minmax(0,1fr);gap:13px}
+ .field.wide{grid-column:1/-1}
+ .field input,.field select,.field textarea{font-size:16px;min-height:49px;padding:12px}
+ .field textarea{min-height:112px}
+ .field-help{font-size:12px}
+ .planner-route-head{margin-top:19px}
+ .planner-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .route-picker{grid-column:1/-1;width:100%;min-width:0}
+ .planner-actions #addSelectedStop{grid-column:1/-1;width:100%}
+ .planner-actions #clearRoute,.planner-actions #resetPlanner{width:100%;min-width:0;padding-inline:8px;font-size:11px}
+ .planner-submit{margin-top:15px;min-height:50px}
+ .planner-disclaimer{font-size:11px}
+ .trip-result{padding:13px;border-radius:15px}
+ .trip-estimate{grid-template-columns:minmax(0,1fr);gap:8px}
+ .trip-estimate-main,.trip-estimate-total{padding:14px}
+ .trip-estimate label,.trip-estimate small,.trip-estimate-note{font-size:12px}
+ .trip-estimate strong,.trip-estimate .estimate-total-value{font-size:24px}
+ .trip-estimate-note{grid-column:auto}
+ .trip-itinerary{grid-template-columns:minmax(0,1fr);gap:9px}
+ .day-card{padding:13px;gap:10px}
+ .day-number{width:34px;height:34px}
+ .day-copy small{font-size:10px}
+ .day-copy h5{font-size:15px}
+ .day-copy p{font-size:13px}
+ .day-map{font-size:12px}
+ .trip-result-actions{display:grid;grid-template-columns:minmax(0,1fr)}
+ .trip-result-actions .btn{width:100%;min-width:0}
+}
+@media(max-width:370px){
+ .planner-layout{width:calc(100% - 22px)}
+ .planner-card{padding:13px}
+ .planner-card-head h3{font-size:20px}
+ .step-badge{white-space:normal}
+ .planner-actions .btn{font-size:10px;min-height:46px}
+ .trip-estimate strong,.trip-estimate .estimate-total-value{font-size:22px}
+ .day-card{gap:8px;padding:10px}
+}
+
 </style></head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skipLink">Skip to main content</a>
@@ -452,8 +575,8 @@ const start=$("#planStart"),old=start.value;start.innerHTML='<option value="">'+
 function updateSavedFilter(){const b=$("#savedFilter");b.setAttribute("aria-pressed",String(state.savedOnly));b.textContent=t("catSaved")+(saved.size?" ("+saved.size+")":"")}
 function getFiltered(){let items=D.filter(d=>{const hay=[d.name,d.country.en,d.country.id,d.region,d.tag.en,d.tag.id,d.desc.en,d.desc.id].join(" ").toLocaleLowerCase();return(!state.query||hay.includes(state.query.toLocaleLowerCase()))&&(state.region==="all"||d.region===state.region)&&(state.category==="all"||d.cat===state.category)&&(!state.savedOnly||saved.has(d.id))});if(state.sort==="az")items.sort((a,b)=>a.name.localeCompare(b.name));else if(state.sort==="region")items.sort((a,b)=>a.region.localeCompare(b.region)||a.name.localeCompare(b.name));return items}
 function syncControls(){$("#searchText").value=state.query;$("#searchRegion").value=state.region;$("#searchCategory").value=state.category;$("#sortOrder").value=state.sort;$$("[data-category]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.category===state.category&&!state.savedOnly)));$$("[data-region]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.region===state.region)));updateSavedFilter()}
-function renderDestinations(){const grid=$("#destinationGrid"),all=getFiltered(),shown=(state.expanded||state.savedOnly||state.query||state.region!=="all"||state.category!=="all")?all:all.slice(0,9);$("#resultCount").textContent=all.length+" "+t("resultCount");grid.innerHTML=shown.length?shown.map(d=>'<article class="destination-card" id="destination-'+d.id+'"><div class="card-image"><img src="'+d.image+'" alt="'+esc(d.alt[lang])+'" loading="lazy" decoding="async"><span class="card-region">'+esc(regionText(d.region))+'</span><button type="button" class="card-heart" data-save="'+d.id+'" aria-pressed="'+saved.has(d.id)+'" aria-label="'+esc((saved.has(d.id)?t("savedPlace"):t("savePlace"))+" — "+d.name)+'">'+(saved.has(d.id)?"♥":"♡")+'</button><div class="card-image-caption"><div><small>'+esc(d.country[lang])+'</small><strong>'+esc(d.name)+'</strong></div><span>'+esc(lang==="en"?d.duration:d.duration.replace(" days"," hari"))+'</span></div></div><div class="card-content"><div class="card-meta"><span>'+esc(regionText(d.region))+'</span><strong>'+esc(categoryText(d.cat))+'</strong></div><h3>'+esc(d.name)+'</h3><p>'+esc(d.desc[lang])+'</p><div class="card-bottom"><span class="card-tag">'+esc(d.tag[lang])+'</span><div class="card-actions"><button class="card-action" type="button" data-detail="'+d.id+'">'+t("viewDetails")+' <span aria-hidden="true">↗</span></button><button class="card-action" type="button" data-add="'+d.id+'" aria-label="'+esc(t("addToRoute")+" — "+d.name)+'">+ '+t("addToRoute").replace("+","")+'</button></div></div></div></article>').join(""):'<div class="empty-state">'+t(state.savedOnly?"savedEmpty":"filterEmpty")+'</div>';
-grid.querySelectorAll("img").forEach(img=>img.addEventListener("error",function(){this.dataset.failed="true";this.alt=lang==="en"?"Image temporarily unavailable":"Gambar sementara tidak tersedia";const box=this.closest(".card-image");if(box){box.classList.add("image-fallback");box.dataset.imageFallback=lang==="en"?"Image unavailable · explore the destination":"Gambar tidak tersedia · jelajahi destinasi"}this.style.display="none"},{once:true}));
+function renderDestinations(){const grid=$("#destinationGrid"),all=getFiltered(),shown=(state.expanded||state.savedOnly||state.query||state.region!=="all"||state.category!=="all")?all:all.slice(0,9);$("#resultCount").textContent=all.length+" "+t("resultCount");grid.innerHTML=shown.length?shown.map(d=>'<article class="destination-card" id="destination-'+d.id+'"><div class="card-image" data-image-family="'+esc(d.cat)+'"><img src="'+d.image+'" alt="'+esc(d.alt[lang])+'" loading="lazy" decoding="async"><span class="card-region">'+esc(regionText(d.region))+'</span><button type="button" class="card-heart" data-save="'+d.id+'" aria-pressed="'+saved.has(d.id)+'" aria-label="'+esc((saved.has(d.id)?t("savedPlace"):t("savePlace"))+" — "+d.name)+'">'+(saved.has(d.id)?"♥":"♡")+'</button><div class="card-image-caption"><div><small>'+esc(d.country[lang])+'</small><strong>'+esc(d.name)+'</strong></div><span>'+esc(lang==="en"?d.duration:d.duration.replace(" days"," hari"))+'</span></div></div><div class="card-content"><div class="card-meta"><span>'+esc(regionText(d.region))+'</span><strong>'+esc(categoryText(d.cat))+'</strong></div><h3>'+esc(d.name)+'</h3><p>'+esc(d.desc[lang])+'</p><div class="card-bottom"><span class="card-tag">'+esc(d.tag[lang])+'</span><div class="card-actions"><button class="card-action" type="button" data-detail="'+d.id+'">'+t("viewDetails")+' <span aria-hidden="true">↗</span></button><button class="card-action" type="button" data-add="'+d.id+'" aria-label="'+esc(t("addToRoute")+" — "+d.name)+'">+ '+t("addToRoute").replace("+","")+'</button></div></div></div></article>').join(""):'<div class="empty-state">'+t(state.savedOnly?"savedEmpty":"filterEmpty")+'</div>';
+
 $("#showMore").hidden=all.length<=9;$("#showMore").textContent=t(state.expanded?"showLess":"showMore");$("#clearFilters").hidden=state.category==="all"&&state.region==="all"&&!state.query&&!state.savedOnly&&state.sort==="featured";syncControls()}
 function renderRouteStops(){const list=$("#routeStops");$("#stopCount").textContent=routeStops.length+" / 5 "+t("stopCounter");list.innerHTML=routeStops.length?routeStops.map((id,i)=>'<span class="stop-chip"><span>'+String(i+1).padStart(2,"0")+' · '+esc(byId(id).name)+'</span><button type="button" data-remove-stop="'+id+'" aria-label="'+esc((lang==="en"?"Remove ":"Hapus ")+byId(id).name)+'">×</button></span>').join(""):'<span class="stop-empty">'+t("stopEmpty")+'</span>'}
 function renderRoutes(){$("#routeGrid").innerHTML=ROUTES.map(r=>'<article class="route-card"><div class="route-card-top"><span class="route-num">'+r.n+' / 03</span><span class="route-type">'+r.type[lang]+'</span></div><h3>'+esc(r.title[lang])+'</h3><p>'+esc(r.desc[lang])+'</p><div class="route-stops">'+r.stops.map(id=>'<span>'+esc(byId(id).name)+'</span>').join("")+'</div><div class="route-bottom"><div><small>'+t("sampleDuration")+'</small><strong>'+r.days[lang]+'</strong></div><button type="button" class="btn btn-primary" data-route-template="'+r.id+'">'+t("sampleUse")+' ↗</button></div><p style="font-size:7px;color:#a2b8ac;margin:10px 0 0">'+t("sampleDisclaimer")+'</p></article>').join("")}
@@ -579,6 +702,75 @@ heroSlideshow.addEventListener("focusout",e=>{if(!heroSlideshow.contains(e.relat
 document.addEventListener("visibilitychange",startHeroSlideshow);
 
 const sections=Array.from(document.querySelectorAll("main section[id]"));if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){$$("[data-nav]").forEach(a=>a.removeAttribute("aria-current"));const link=$('[data-nav="'+entry.target.id+'"]');if(link)link.setAttribute("aria-current","location")}}),{rootMargin:"-25% 0px -60% 0px",threshold:0});sections.forEach(s=>observer.observe(s))}
-const applyImageFallback=img=>{if(!(img instanceof HTMLImageElement))return;const box=img.closest(".card-image,.hero-art-image,.journal-feature,.dialog-hero");if(!box)return;box.classList.add("image-fallback");box.dataset.imageFallback=lang==="en"?"Image unavailable · please try again later":"Gambar tidak tersedia · coba lagi nanti";img.style.visibility="hidden"};document.addEventListener("error",e=>applyImageFallback(e.target),true);document.querySelectorAll("img").forEach(img=>{if(img.complete&&img.naturalWidth===0)applyImageFallback(img)});$("#year").textContent=String(new Date().getFullYear());const today=new Date();$("#planDate").min=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");updateStaticTranslations();startHeroSlideshow();
+const IMAGE_FALLBACKS={
+ coast:[
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=84"
+ ],
+ culture:[
+  "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1100&q=84"
+ ],
+ city:[
+  "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1100&q=84"
+ ],
+ nature:[
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1503614472-8c93d56cd480?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1100&q=84"
+ ],
+ wildlife:[
+  "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=84"
+ ],
+ default:[
+  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=84",
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1100&q=84"
+ ]
+};
+const applyImageFallback=img=>{
+ if(!(img instanceof HTMLImageElement))return;
+ const box=img.closest(".card-image,.hero-art-image,.journal-feature,.dialog-hero");
+ if(!box)return;
+ if(!img.dataset.originalImage)img.dataset.originalImage=img.currentSrc||img.src;
+ const family=box.dataset.imageFamily||"default",options=IMAGE_FALLBACKS[family]||IMAGE_FALLBACKS.default;
+ let attempt=Number(img.dataset.imageRecoveryAttempt||"0");
+ while(attempt<options.length){
+  const candidate=options[attempt];attempt++;img.dataset.imageRecoveryAttempt=String(attempt);
+  const id=candidate.match(/photo-([a-zA-Z0-9-]+)/)?.[1],originalId=(img.dataset.originalImage||"").match(/photo-([a-zA-Z0-9-]+)/)?.[1];
+  if(id&&id===originalId)continue;
+  if(box){box.classList.remove("image-fallback");delete box.dataset.imageFallback}
+  img.style.display="block";img.style.visibility="visible";img.dataset.usingImageFallback="true";
+  img.alt=lang==="en"?"Illustrative travel photograph (original image unavailable)":"Foto ilustrasi perjalanan (foto asli tidak tersedia)";
+  img.src=candidate;
+  return;
+ }
+ img.dataset.failed="true";
+ img.alt=lang==="en"?"Destination photograph unavailable":"Foto destinasi tidak tersedia";
+ box.classList.add("image-fallback");
+ box.dataset.imageFallback=lang==="en"?"Photo unavailable · destination details remain available":"Foto tidak tersedia · informasi destinasi tetap tersedia";
+ img.style.display="none";
+};
+document.addEventListener("error",e=>applyImageFallback(e.target),true);
+document.addEventListener("load",e=>{
+ const img=e.target;
+ if(!(img instanceof HTMLImageElement)||!img.dataset.usingImageFallback)return;
+ const box=img.closest(".card-image,.hero-art-image,.journal-feature,.dialog-hero");
+ if(box){box.classList.remove("image-fallback");delete box.dataset.imageFallback}
+ img.style.display="block";img.style.visibility="visible";
+},true);
+document.querySelectorAll("img").forEach(img=>{if(img.complete&&img.naturalWidth===0)applyImageFallback(img)});$("#year").textContent=String(new Date().getFullYear());const today=new Date();$("#planDate").min=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");updateStaticTranslations();startHeroSlideshow();
 })();
 </script></body></html>
