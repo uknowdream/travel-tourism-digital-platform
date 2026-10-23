@@ -93,8 +93,8 @@ try {
   assert.ok((await page.locator("#tripItinerary").innerText()).includes("Buka peta destinasi"));
   pass("Generated planner output stays bilingual after switching languages");
 
-  if (await page.locator("#destinationGrid .destination-card").count() < 25) await page.locator("#showMore").click();
-  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 25);
+  if (await page.locator("#destinationGrid .destination-card").count() < 33) await page.locator("#showMore").click();
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 33);
   await page.locator("#destinationGrid img").evaluateAll(images => images.forEach(img => { img.loading = "eager"; }));
   await page.waitForFunction(() => [...document.querySelectorAll("#destinationGrid .card-image img")].every(img =>
     (img.complete && img.naturalWidth > 0) || img.closest(".card-image")?.classList.contains("image-fallback")
@@ -111,9 +111,9 @@ try {
     gracefulPlaceholders: images.filter(img => img.closest(".card-image")?.classList.contains("image-fallback")).length,
     unresolved: images.filter(img => !(img.complete && img.naturalWidth > 0) && !img.closest(".card-image")?.classList.contains("image-fallback")).length
   }));
-  assert.equal(imageReport.total, 25);
+  assert.equal(imageReport.total, 33);
   assert.equal(imageReport.unresolved, 0);
-  pass("All 25 destination cards have a loaded photo or a deliberate accessible fallback: " + JSON.stringify(imageReport));
+  pass("All 33 destination cards have a loaded photo or a deliberate accessible fallback: " + JSON.stringify(imageReport));
 
   await noHorizontalOverflow(page, "Desktop 1440px");
   assert.deepEqual(runtimeErrors, [], "Runtime JavaScript errors: " + runtimeErrors.join("; "));
