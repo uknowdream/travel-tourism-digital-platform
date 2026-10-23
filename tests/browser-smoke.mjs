@@ -101,9 +101,29 @@ try {
 
   await page.locator("[data-detail]").first().click();
   assert.ok((await page.locator("#dialogBackdrop").getAttribute("class")).includes("open"));
+  assert.match(await page.locator("#dialogMap").getAttribute("href"), /google\.com\/maps\/search/);
+  assert.equal(await page.locator("#dialogShare").count(), 1);
+  const firstCompareId = await page.locator("#dialogCompare").getAttribute("data-place");
+  await page.locator("#dialogCompare").click();
+  assert.equal(await page.locator("#dialogCompare").getAttribute("aria-pressed"), "true");
   await page.locator("#dialogClose").click();
   assert.ok(!(await page.locator("#dialogBackdrop").getAttribute("class")).includes("open"));
-  pass("Destination detail dialog opens and closes");
+  await page.locator("#destinationGrid [data-detail]").nth(1).click();
+  const secondCompareId = await page.locator("#dialogCompare").getAttribute("data-place");
+  assert.notEqual(firstCompareId, secondCompareId);
+  await page.locator("#dialogCompare").click();
+  await page.locator("#dialogClose").click();
+  assert.ok(await page.locator("#comparePanel").isVisible());
+  assert.equal(await page.locator("#compareGrid .compare-card").count(), 2);
+  assert.equal(await page.locator("#compareSaved").isEnabled(), true);
+  await page.locator("#compareSaved").click();
+  assert.ok(!(await page.locator("#comparePanel").isVisible()));
+  await page.locator("#compareSaved").click();
+  assert.ok(await page.locator("#comparePanel").isVisible());
+  await page.locator("#clearCompare").click();
+  assert.equal(await page.locator("#compareGrid .compare-card").count(), 0);
+  assert.equal(await page.locator("#compareSaved").isEnabled(), false);
+  pass("Destination detail map/share actions and two-place comparison work");
 
   await page.locator("#destinationGrid [data-save]").first().click();
   await page.locator("#savedFilter").click();
@@ -279,12 +299,24 @@ try {
     responsiveMatrix.push(metrics);
   }
   pass("Trip planner viewport matrix 1024 / 820 / 600 / 520 / 390 / 350px: " + JSON.stringify(responsiveMatrix));
+  await mobile.setViewportSize({ width: 390, height: 844 });
+  await mobile.locator("#destinations").scrollIntoViewIfNeeded();
+  await mobile.locator("#destinationGrid [data-detail]").first().click();
+  await mobile.locator("#dialogCompare").click();
+  await mobile.locator("#dialogClose").click();
+  await mobile.locator("#destinationGrid [data-detail]").nth(1).click();
+  await mobile.locator("#dialogCompare").click();
+  await mobile.locator("#dialogClose").click();
+  assert.ok(await mobile.locator("#comparePanel").isVisible());
+  assert.equal(await mobile.locator("#compareGrid .compare-card").count(), 2);
+  pass("Comparison panel opens for two selected destinations on mobile");
+
   const fullSiteMatrix = [];
   for (const width of [1440, 1280, 1100, 1024, 900, 820, 768, 600, 520, 430, 390, 375, 350, 320]) {
     await mobile.setViewportSize({ width, height: 900 });
     await mobile.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const metrics = await mobile.evaluate(() => {
-      const selectors = [".header .nav", ".hero", ".search-panel", "#regionBar", "#destinationGrid", ".experience-grid", "#routeGrid", ".planner-card", ".journal-grid", ".faq-layout", ".footer-top"];
+      const selectors = [".header .nav", ".hero", ".search-panel", "#regionBar", "#destinationGrid", ".experience-grid", "#routeGrid", ".planner-card", ".journal-grid", ".faq-layout", ".footer-top", "#comparePanel"];
       const outside = [];
       for (const selector of selectors) {
         const el = document.querySelector(selector);
@@ -307,6 +339,8 @@ try {
     fullSiteMatrix.push(metrics);
   }
   pass("Whole-site responsive matrix 1440 down to 320px: " + JSON.stringify(fullSiteMatrix));
+  await mobile.locator("#clearCompare").scrollIntoViewIfNeeded();
+  await mobile.locator("#clearCompare").click();
   await mobile.setViewportSize({ width: 390, height: 844 });
 
 
@@ -321,6 +355,16 @@ try {
   pass("Mobile navigation, touch layout and 16px form controls work at 390px and 350px");
 
   await mobileContext.close();
+
+  const sharedContext = await browser.newContext({ viewport: { width: 390, height: 844 }, timezoneId: "Asia/Jakarta" });
+  const sharedPage = await sharedContext.newPage();
+  sharedPage.on("pageerror", error => runtimeErrors.push(error.message));
+  await sharedPage.goto("http://127.0.0.1:4173/?destination=nusa-penida", { waitUntil: "domcontentloaded" });
+  await sharedPage.locator("#dialogBackdrop.open").waitFor({ timeout: 10000 });
+  assert.match(await sharedPage.locator("#dialogTitle").innerText(), /Nusa Penida/);
+  pass("Shared destination links open the intended destination detail");
+  await sharedContext.close();
+
   console.log("\nBrowser smoke tests passed.");
 } catch (error) {
   console.error("BROWSER SMOKE TEST FAILED:", error?.stack || error);
