@@ -54,9 +54,9 @@ test('hero background uses the first destination card image and carousel data', 
   assert.match(html, /id="heroSlideNext"/);
   assert.match(html, /id="heroSlidePrev"/);
   const destinationRecords = [...html.matchAll(/id:"([a-z0-9-]+)",name:"([^"]+)"[\s\S]*?image:"(https:\/\/images\.unsplash\.com\/[^"]+)"/g)];
-  assert.equal(destinationRecords.length, 25, 'Expected 25 destination records');
-  assert.equal(new Set(destinationRecords.map(record => record[1])).size, 25, 'Destination IDs must be unique');
-  assert.equal(new Set(destinationRecords.map(record => record[3])).size, 25, 'Destination images must be unique');
+  assert.equal(destinationRecords.length, 33, 'Expected 33 destination records');
+  assert.equal(new Set(destinationRecords.map(record => record[1] )).size, 33, 'Destination IDs must be unique');
+  assert.equal(new Set(destinationRecords.map(record => record[3] )).size, 33, 'Destination images must be unique');
 });
 
 test('hero is immersive, readable and responsive rather than using a floating info card', () => {
