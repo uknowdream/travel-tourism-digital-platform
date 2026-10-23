@@ -58,17 +58,12 @@ test('hero background uses the first destination card image and carousel data', 
   assert.equal(new Set(destinationRecords.map(record => record[1] )).size, 41, 'Destination IDs must be unique');
   assert.equal(new Set(destinationRecords.map(record => record[3] )).size, 41, 'Destination images must be unique');
 
-  const indonesiaPlaces = destinationRecords.filter(record => {
-    const recordStart = html.indexOf('id:"' + record[1] + '"');
-    const nextRecord = html.indexOf('id:"', recordStart + 5);
-    const recordText = html.slice(recordStart, nextRecord < 0 ? recordStart + 2000 : nextRecord);
-    return /country:\\{en:"Indonesia",id:"Indonesia"\\}/.test(recordText);
-  });
-  assert.ok(indonesiaPlaces.length >= 18, 'Expected at least 18 Indonesia destinations');
+  const indonesiaCount = (html.match(/\{id:"[^"]+",name:"[^"]+",country:\{en:"Indonesia",id:"Indonesia"\}/g) || []).length;
+  assert.ok(indonesiaCount >= 18, 'Expected at least 18 Indonesia destinations');
   assert.match(html, /id="heroDestinationCount"/);
   assert.match(html, /id="sectionDestinationCount"/);
   assert.match(html, /data-region-count="Asia"/);
-  assert.match(html, /document.querySelectorAll\\("\\[data-region-count\\]"\\)/);
+  assert.ok(html.includes('document.querySelectorAll("[data-region-count]")'));
 });
 
 test('hero is immersive, readable and responsive rather than using a floating info card', () => {
