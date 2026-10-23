@@ -26,7 +26,7 @@ test('has unique element IDs and destination/planner controls', () => {
     'menuToggle', 'mobileNav', 'quickSearch', 'searchText', 'searchCategory',
     'searchRegion', 'destinationGrid', 'heroSlideshow', 'heroSlideImage',
     'heroSlidePrev', 'heroSlideNext', 'heroSlideDots', 'plannerForm',
-    'routeDestinationPicker', 'tripEstimate', 'tripItinerary'
+    'routeDestinationPicker', 'tripEstimate', 'tripItinerary', 'indonesiaFilter', 'shareBrief', 'printBrief', 'calendarBrief'
   ]) assert.ok(ids.includes(id), 'Missing required element #' + id);
 });
 
@@ -62,6 +62,8 @@ test('hero background uses the first destination card image and carousel data', 
   assert.ok(indonesiaCount >= 18, 'Expected at least 18 Indonesia destinations');
   assert.match(html, /id="heroDestinationCount"/);
   assert.match(html, /id="sectionDestinationCount"/);
+  assert.match(html, /id="indonesiaFilter"/);
+  assert.match(html, /id="indonesiaCount"/);
   assert.match(html, /data-region-count="Asia"/);
   assert.ok(html.includes('document.querySelectorAll("[data-region-count]")'));
 });
@@ -86,6 +88,35 @@ test('trip planner makes a dated itinerary and labels estimates as indicative', 
   assert.match(html, /not live prices/);
   assert.match(html, /ttdp:saved/);
   assert.match(html, /localStorage\.setItem/);
+});
+
+
+test('Indonesia filter, share-safe planner links, print and calendar export are present', () => {
+  assert.match(html, /data-country-search="Indonesia"/);
+  assert.match(html, /function makeShareUrl\(\)/);
+  assert.match(html, /function loadSharedPlanFromUrl\(\)/);
+  assert.match(html, /function downloadCalendar\(\)/);
+  assert.match(html, /function printBrief\(\)/);
+  assert.match(html, /sharePrivacyNote/);
+  assert.match(html, /params\.set\("trip","1"\)/);
+  assert.match(html, /params\.set\("stops",stops\.join\(","\)\)/);
+  assert.doesNotMatch(html.slice(html.indexOf("function makeShareUrl()"), html.indexOf("function goToResults()")), /planNotes|notes:/);
+  assert.match(html, /text\/calendar;charset=utf-8/);
+  assert.match(html, /@media print/);
+});
+
+test('visible typography has a 10px minimum on explicit pixel font sizes', () => {
+  const declarations = [...css.matchAll(/font-size\s*:\s*([^;]+);/g)].map(match => match[1]);
+  const tooSmall = declarations.flatMap(value => [...value.matchAll(/(\d+(?:\.\d+)?)px/g)]
+    .map(match => Number(match[1])).filter(px => px < 10));
+  assert.deepEqual(tooSmall, []);
+  assert.match(css, /font-size:max\(10px/);
+});
+
+test('the destination image fallback and high-priority hero preload are configured', () => {
+  assert.match(html, /const IMAGE_FALLBACKS=/);
+  assert.match(html, /imageRecoveryAttempt/);
+  assert.match(html, /rel="preload" as="image"/);
 });
 
 test('stylesheet braces and structured data are valid', () => {
