@@ -89,7 +89,7 @@ def main():
     for bp in ("@media(max-width:1100px)", "@media(max-width:820px)", "@media(max-width:520px)", "@media(max-width:350px)", "prefers-reduced-motion:reduce"):
         check(bp in html, f"Responsive/accessibility rule exists: {bp}")
     check("grid-template-columns:1fr" in html[html.rfind("@media(max-width:520px)"):], "Mobile destination cards prioritize readable single-column layout")
-    check("function makeBrief(focusOutput=true)" in html and "indicative daily budget" in html and "not live prices" in html, "Planner generates daily outline and labels budget as indicative")
+    check("function makeBrief(focusOutput=true)" in html and "Indicative daily budget" in html and "not live prices" in html, "Planner generates daily outline and labels budget as indicative")
     check("image-fallback" in html, "Broken images receive a designed fallback state")
 
     css = re.search(r"<style>([\s\S]*?)</style>", html)
