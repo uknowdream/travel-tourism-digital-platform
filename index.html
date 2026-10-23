@@ -468,6 +468,262 @@ body{background:var(--page-bg);color:var(--ink)}
  .day-card{gap:8px;padding:10px}
 }
 
+
+/* Whole-site responsive contract: consistent gutters, flexible grids and no clipped controls */
+html{max-width:100%;overflow-x:clip;scroll-padding-top:84px}
+body{width:100%;max-width:100%;min-width:320px;overflow-x:clip}
+*,*::before,*::after{box-sizing:border-box}
+header,main,footer,section,article,form,nav,.wrap,.planner-layout,.planner-card,.planner-fields,.catalog-tools,.trip-result{min-width:0;max-width:100%}
+img,svg,video,canvas{max-width:100%}
+h1,h2,h3,h4,h5,p,span,a,button,label,small,strong{overflow-wrap:anywhere}
+input,select,textarea,button{max-width:100%;font:inherit}
+button,a,summary,select,input,textarea{touch-action:manipulation}
+.wrap{width:min(1240px,calc(100% - 48px));margin-inline:auto}
+.header{width:100%;max-width:100%}
+.header .nav{width:min(1400px,calc(100% - 40px));max-width:1400px;margin-inline:auto;min-width:0;gap:clamp(10px,1.5vw,22px)}
+.brand{min-width:0;flex-shrink:0}
+.brand-copy{min-width:0}
+.nav-links{min-width:0;flex-wrap:wrap;justify-content:center;gap:clamp(9px,1.3vw,20px)}
+.nav-links a{white-space:normal}
+.nav-actions{min-width:0;max-width:100%;flex-shrink:0}
+.nav-actions>*{min-width:0}
+.hero-shell{width:100%;max-width:100%;overflow:clip}
+.hero{width:min(1500px,calc(100% - 40px));max-width:1500px;margin-inline:auto;min-width:0}
+.hero-copy{min-width:0}
+.hero h1{max-width:100%;text-wrap:balance}
+.hero-description{max-width:min(56ch,100%)}
+.hero-actions{max-width:100%;flex-wrap:wrap}
+.hero-meta{max-width:100%;flex-wrap:wrap}
+.hero-art{min-width:0;max-width:100%}
+.hero-art-image img{display:block;width:100%;height:100%;object-fit:cover}
+.search-dock{width:min(1240px,calc(100% - 48px));max-width:1240px;margin-inline:auto}
+.search-panel{width:100%;max-width:100%;grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr) minmax(0,.9fr) auto;gap:0}
+.search-field{min-width:0}
+.search-field input,.search-field select{width:100%;min-width:0;max-width:100%}
+.region-bar{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.region-tile{min-width:0;max-width:100%;align-items:center}
+.region-tile>span:last-child{min-width:0}
+.region-tile strong,.region-tile small{overflow-wrap:anywhere}
+.section-head,.section-head-main{min-width:0;max-width:100%}
+.section-head{gap:clamp(18px,3vw,38px)}
+.section-title{max-width:100%;text-wrap:balance;overflow-wrap:anywhere}
+.section-description{max-width:100%}
+.catalog-tools{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;min-width:0}
+.filter-list{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0;max-width:100%}
+.filter-chip{max-width:100%;white-space:normal;flex:0 0 auto}
+.catalog-utilities{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;max-width:100%}
+.sort-select,.catalog-utilities select{min-width:0;max-width:100%}
+.destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,20px);min-width:0}
+.destination-card{min-width:0;max-width:100%;height:100%}
+.card-image{height:auto;aspect-ratio:4/3;min-height:0}
+.card-image img{display:block;width:100%;height:100%;object-fit:cover}
+.card-content,.card-bottom,.card-actions,.card-meta{min-width:0;max-width:100%}
+.card-content p{overflow-wrap:anywhere}
+.card-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.card-actions{display:flex;align-items:center;gap:clamp(10px,1.2vw,18px);flex-wrap:wrap}
+.card-action{min-width:0;white-space:normal}
+.value-strip{width:100%;max-width:100%}
+.value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,25px)}
+.value-item{min-width:0;max-width:100%}
+.value-item p{overflow-wrap:anywhere}
+.experience-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.experience-card{min-width:0;max-width:100%}
+.route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.route-card{min-width:0;max-width:100%}
+.route-card-top,.route-bottom{gap:10px;flex-wrap:wrap}
+.route-card h3,.route-card p,.route-stops{overflow-wrap:anywhere;min-width:0}
+.route-bottom .btn{max-width:100%;white-space:normal}
+.planner-section{width:100%;max-width:100%;overflow:clip}
+.planner-layout{width:min(1240px,calc(100% - 48px));margin-inline:auto;grid-template-columns:minmax(0,.74fr) minmax(0,1.26fr);gap:clamp(24px,4vw,58px)}
+.planner-copy,.planner-card,.planner-card-head,.planner-fields,.field,.planner-actions,.trip-estimate,.trip-itinerary{min-width:0;max-width:100%}
+.planner-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+.field,.field input,.field select,.field textarea,.route-picker select{min-width:0;max-width:100%;width:100%}
+.planner-actions{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.route-picker{min-width:0;flex:1 1 220px;max-width:100%}
+.planner-actions .btn{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.stop-list{min-width:0;max-width:100%;flex-wrap:wrap}
+.stop-chip{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.trip-estimate{grid-template-columns:repeat(2,minmax(0,1fr))}
+.trip-estimate-main,.trip-estimate-total{min-width:0;max-width:100%}
+.trip-estimate strong,.trip-estimate-note,.trip-result p{overflow-wrap:anywhere}
+.trip-itinerary{grid-template-columns:repeat(2,minmax(0,1fr));min-width:0}
+.day-card,.day-copy{min-width:0;max-width:100%}
+.day-copy p,.day-copy h5,.day-map{overflow-wrap:anywhere}
+.trip-result-actions{display:flex;flex-wrap:wrap;gap:9px}
+.trip-result-actions .btn{flex:1 1 140px;min-width:0;white-space:normal}
+.journal-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px}
+.journal-feature,.journal-card{min-width:0;max-width:100%}
+.journal-card a,.journal-card p{overflow-wrap:anywhere}
+.faq-layout{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,70px)}
+.faq-intro,.faq-list,.faq-list details,.faq-list summary,.faq-list p{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.footer{width:100%;max-width:100%}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:clamp(16px,2.5vw,30px)}
+.footer-about,.footer-col,.footer-links,.footer-bottom{min-width:0;max-width:100%}
+.footer-links a{overflow-wrap:anywhere}
+.dialog-backdrop{padding:clamp(8px,2vw,24px)}
+.dialog{width:min(900px,calc(100% - 16px));max-width:100%;max-height:90vh;max-height:90dvh;overflow:auto}
+.dialog-hero{width:100%;max-width:100%;height:clamp(210px,32vw,330px)}
+.dialog-hero img{width:100%;height:100%;object-fit:cover}
+.dialog-body,.dialog-actions{min-width:0;max-width:100%}
+.dialog-actions{display:flex;gap:8px;flex-wrap:wrap}
+.dialog-actions .btn{min-width:0;max-width:100%;flex:1 1 140px;white-space:normal}
+@media(max-width:1100px){
+ .wrap,.search-dock,.planner-layout{width:calc(100% - 44px)}
+ .header .nav{width:calc(100% - 36px)}
+ .nav-links{gap:10px}
+ .nav-links a{font-size:10px}
+ .region-bar{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .destination-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .experience-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .route-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .journal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .journal-feature{grid-column:1/-1;grid-row:auto;min-height:340px}
+ .footer-top{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .footer-about{grid-column:1/-1}
+ .footer-summary,.footer-note{max-width:620px}
+ .faq-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:26px}
+}
+@media(max-width:820px){
+ .wrap,.search-dock,.planner-layout{width:calc(100% - 36px)}
+ .header .nav{width:calc(100% - 32px);height:68px}
+ .nav-links{display:none}
+ .nav-actions>.desktop-cta{display:none}
+ .menu-toggle{display:grid}
+ .hero{width:calc(100% - 28px)}
+ .search-panel{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:10px}
+ .search-field{padding:9px 12px;border-right:0;border-bottom:1px solid #e7ece7}
+ .search-field:nth-child(odd){border-right:1px solid #e7ece7}
+ .search-panel .btn{grid-column:1/-1;width:100%;margin-top:8px}
+ .region-bar{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .destination-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+ .card-image{aspect-ratio:1.08}
+ .experience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .route-grid{grid-template-columns:minmax(0,1fr)}
+ .planner-layout{grid-template-columns:minmax(0,1fr);gap:24px}
+ .planner-copy{position:static}
+ .planner-copy .section-title{max-width:18ch}
+ .planner-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .journal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .journal-feature{grid-column:1/-1;grid-row:auto;min-height:320px}
+ .faq-layout{grid-template-columns:minmax(0,1fr);gap:20px}
+ .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
+ .footer-about{grid-column:1/-1}
+ .dialog{width:min(720px,calc(100% - 12px))}
+}
+@media(max-width:600px){
+ html{scroll-padding-top:70px}
+ .wrap,.search-dock,.planner-layout{width:calc(100% - 28px)}
+ .header .nav{width:calc(100% - 24px);height:64px;gap:8px}
+ .brand{gap:7px;max-width:60%}
+ .brand-copy strong{font-size:11px}
+ .brand-copy small{font-size:7px}
+ .nav-actions{gap:6px}
+ .language{font-size:9px;padding:8px 9px}
+ .menu-toggle{width:36px;height:36px}
+ .hero{width:calc(100% - 20px);border-radius:20px}
+ .hero-copy{padding:30px 22px 82px}
+ .hero h1{font-size:clamp(34px,8.8vw,48px);line-height:1.08}
+ .hero-description{font-size:14px;line-height:1.75}
+ .hero-actions{display:flex;flex-wrap:wrap;gap:8px}
+ .hero-actions .btn{flex:0 1 auto;min-width:0;max-width:100%;font-size:11px;padding:12px 13px}
+ .hero-meta{display:flex;flex-wrap:wrap;gap:12px}
+ .hero-metric{min-width:0}
+ .hero-slideshow-controls{max-width:calc(100% - 20px)}
+ .search-dock{margin-top:16px}
+ .search-panel{grid-template-columns:minmax(0,1fr);padding:9px;border-radius:16px}
+ .search-field,.search-field:nth-child(odd){border-right:0;border-bottom:1px solid #e7ece7;padding:8px 10px}
+ .search-field:last-of-type{border-bottom:0}
+ .search-field input,.search-field select{font-size:16px;min-height:42px}
+ .search-panel .btn{grid-column:auto;margin:5px 0 0;min-height:46px}
+ .region-bar{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .region-tile{padding:10px 9px;gap:8px}
+ .region-symbol{width:31px;height:31px}
+ .region-tile strong{font-size:11px}
+ .region-tile small{font-size:10px}
+ .section{padding:clamp(48px,10vw,64px) 0}
+ .section-compact{padding:42px 0}
+ .section-head{align-items:flex-start;flex-direction:column;gap:13px;margin-bottom:20px}
+ .section-title{font-size:clamp(29px,7.8vw,39px);line-height:1.12}
+ .section-description{font-size:13px;line-height:1.75}
+ .catalog-tools{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+ .filter-list{width:100%;max-width:100%;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain;padding:2px 1px 9px;scrollbar-width:thin}
+ .filter-chip{flex:0 0 auto;white-space:nowrap;font-size:11px;min-height:39px}
+ .catalog-utilities{width:100%;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+ .result-count{font-size:11px}
+ .sort-select,.catalog-utilities select{max-width:100%;min-height:42px;font-size:12px}
+ .destination-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+ .card-image{aspect-ratio:1.55;min-height:190px}
+ .card-content{padding:16px}
+ .card-content h3{font-size:21px}
+ .card-content p{font-size:14px;line-height:1.7}
+ .card-bottom{align-items:flex-start;flex-direction:column;gap:8px}
+ .card-actions{width:100%;justify-content:space-between;gap:12px}
+ .card-action{min-height:44px;font-size:12px}
+ .value-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .value-item{align-items:flex-start}
+ .experience-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .experience-card{min-height:160px;padding:14px}
+ .route-grid{grid-template-columns:minmax(0,1fr)}
+ .route-card{padding:18px;min-height:0}
+ .route-card h3{font-size:22px}
+ .planner-steps{grid-template-columns:minmax(0,1fr);gap:9px}
+ .planner-step{align-items:center}
+ .planner-card{padding:16px;border-radius:17px}
+ .planner-card-head>div{flex-basis:100%}
+ .planner-fields{grid-template-columns:minmax(0,1fr);gap:13px}
+ .field.wide{grid-column:1/-1}
+ .field input,.field select,.field textarea{font-size:16px;min-height:49px}
+ .planner-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .route-picker,.planner-actions #addSelectedStop{grid-column:1/-1;width:100%;min-width:0}
+ .planner-actions #clearRoute,.planner-actions #resetPlanner{width:100%;min-width:0}
+ .trip-estimate{grid-template-columns:minmax(0,1fr);gap:9px}
+ .trip-estimate-note{grid-column:auto}
+ .trip-itinerary{grid-template-columns:minmax(0,1fr);gap:9px}
+ .day-card{padding:13px}
+ .trip-result-actions{display:grid;grid-template-columns:minmax(0,1fr)}
+ .trip-result-actions .btn{width:100%;min-width:0}
+ .journal-grid{grid-template-columns:minmax(0,1fr)}
+ .journal-feature{grid-column:auto;min-height:300px}
+ .journal-card{padding:17px}
+ .faq-list summary{font-size:14px;line-height:1.5;gap:12px}
+ .faq-list details{padding:15px 0}
+ .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
+ .footer-about{grid-column:1/-1}
+ .footer-bottom{align-items:flex-start;flex-direction:column;gap:8px}
+ .dialog-backdrop{padding:8px}
+ .dialog{width:100%;max-height:92vh;max-height:92dvh;border-radius:17px}
+ .dialog-hero{height:210px}
+ .dialog-body{padding:17px}
+ .dialog-actions{display:grid;grid-template-columns:minmax(0,1fr)}
+ .dialog-actions .btn{width:100%}
+}
+@media(max-width:370px){
+ .wrap,.planner-layout{width:calc(100% - 22px)}
+ .header .nav{width:calc(100% - 18px)}
+ .brand{max-width:58%}
+ .brand-copy strong{font-size:10px;letter-spacing:-.03em}
+ .brand-copy small{font-size:6px}
+ .nav-actions{gap:5px}
+ .language{padding:7px;font-size:8px}
+ .menu-toggle{width:33px;height:33px}
+ .hero{width:calc(100% - 16px)}
+ .hero-copy{padding:28px 17px 76px}
+ .hero h1{font-size:32px}
+ .hero-actions .btn{flex:1 1 120px;padding-inline:9px}
+ .hero-metric small{font-size:8px}
+ .region-tile{padding:9px 7px}
+ .region-symbol{width:27px;height:27px}
+ .value-grid{grid-template-columns:minmax(0,1fr)}
+ .experience-card{min-height:150px}
+ .planner-card{padding:13px}
+ .planner-actions .btn{font-size:11px;padding-inline:7px}
+ .footer-top{grid-template-columns:minmax(0,1fr)}
+ .footer-about{grid-column:auto}
+ .dialog-hero{height:180px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 </style></head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skipLink">Skip to main content</a>
@@ -536,7 +792,7 @@ const D=[
 {id:"bangkok",name:"Bangkok",country:{en:"Thailand",id:"Thailand"},region:"Asia",cat:"city",tag:{en:"Street food & heritage",id:"Kuliner jalanan & warisan"},duration:"3–5 days",desc:{en:"Temple complexes, river routes, busy markets and celebrated street-food culture create a layered urban experience. Consider heat, traffic and temple etiquette when arranging daily visits.",id:"Kompleks kuil, jalur sungai, pasar ramai, dan budaya kuliner jalanan menciptakan pengalaman kota berlapis. Perhitungkan suhu, lalu lintas, dan etika berkunjung ke kuil."},image:"https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=900&q=82",alt:{en:"Bangkok cityscape and contemporary high-rises",id:"Cakrawala Bangkok dan gedung modern"},highlights:{en:["Local markets","River connections","Thai cuisine"],id:["Pasar lokal","Koneksi sungai","Kuliner Thailand"]}},
 {id:"singapore",name:"Singapore",country:{en:"Singapore",id:"Singapura"},region:"Asia",cat:"city",tag:{en:"Design, gardens & food",id:"Desain, taman & kuliner"},duration:"2–4 days",desc:{en:"A compact destination with contrasting neighbourhoods, waterfront architecture, gardens and varied food culture. Pair nearby sights, use public transport and consider heat and humidity when shaping the day.",id:"Destinasi kompak dengan kawasan khas, arsitektur tepi laut, taman, dan kuliner beragam. Padukan atraksi berdekatan, gunakan transportasi publik, dan perhitungkan panas serta kelembapan."},image:"https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=82",alt:{en:"Singapore skyline and waterfront architecture",id:"Cakrawala Singapura dan arsitektur tepi laut"},highlights:{en:["Food culture","Urban gardens","Easy connections"],id:["Budaya kuliner","Taman kota","Koneksi mudah"]}},
 {id:"maldives",name:"The Maldives",country:{en:"Maldives",id:"Maladewa"},region:"Asia",cat:"coast",tag:{en:"Atolls & marine life",id:"Atol & kehidupan laut"},duration:"4–7 days",desc:{en:"Turquoise lagoons, reef environments and low-lying islands create a distinctive marine escape. Compare island transfers, learn local rules and choose water activities with care for fragile ecosystems.",id:"Laguna biru kehijauan, ekosistem terumbu, dan pulau dataran rendah menciptakan pelarian bahari khas. Bandingkan transportasi antarpulau, pahami aturan setempat, dan pilih aktivitas air yang menjaga ekosistem."},image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=900&q=82",alt:{en:"Turquoise water and tropical islands in the Maldives",id:"Air biru kehijauan dan pulau tropis di Maladewa"},highlights:{en:["Reef experiences","Island transfers","Marine conservation"],id:["Pengalaman terumbu","Transportasi antarpulau","Konservasi laut"]}},
-{id:"raja-ampat",name:"Raja Ampat",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Marine biodiversity",id:"Keanekaragaman laut"},duration:"5–8 days",desc:{en:"Limestone islets, clear lagoons and rich marine biodiversity make a remarkable remote-island journey. Logistics can be spread across islands, so arrange boat transfers carefully and prioritise reef protection.",id:"Gugusan karst, laguna jernih, dan keanekaragaman laut menjadikan perjalanan kepulauan istimewa. Logistik tersebar antarpulau; atur transportasi kapal dan utamakan perlindungan terumbu."},image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=82",alt:{en:"Clear blue tropical water and island coast",id:"Laut tropis biru jernih dan pesisir pulau"},highlights:{en:["Marine life","Remote logistics","Reef-aware travel"],id:["Kehidupan laut","Logistik terpencil","Wisata menjaga terumbu"]}},
+{id:"raja-ampat",name:"Raja Ampat",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Marine biodiversity",id:"Keanekaragaman laut"},duration:"5–8 days",desc:{en:"Limestone islets, clear lagoons and rich marine biodiversity make a remarkable remote-island journey. Logistics can be spread across islands, so arrange boat transfers carefully and prioritise reef protection.",id:"Gugusan karst, laguna jernih, dan keanekaragaman laut menjadikan perjalanan kepulauan istimewa. Logistik tersebar antarpulau; atur transportasi kapal dan utamakan perlindungan terumbu."},image:"https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=82",alt:{en:"Clear blue tropical water and island coast",id:"Laut tropis biru jernih dan pesisir pulau"},highlights:{en:["Marine life","Remote logistics","Reef-aware travel"],id:["Kehidupan laut","Logistik terpencil","Wisata menjaga terumbu"]}},
 {id:"paris",name:"Paris",country:{en:"France",id:"Prancis"},region:"Europe",cat:"city",tag:{en:"Art, design & cuisine",id:"Seni, desain & kuliner"},duration:"3–5 days",desc:{en:"Pair major art collections and architectural landmarks with riverside walks, café culture and neighbourhood markets. Group visits by district, book timed-entry attractions when required and leave time to wander.",id:"Padukan koleksi seni dan landmark arsitektur dengan jalan tepi sungai, budaya kafe, serta pasar kawasan. Kelompokkan kunjungan per distrik dan pesan atraksi lebih awal bila diperlukan."},image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=82",alt:{en:"Paris skyline and Eiffel Tower",id:"Cakrawala Paris dan Menara Eiffel"},highlights:{en:["Museums & galleries","Neighbourhood walks","French cuisine"],id:["Museum & galeri","Jelajah kawasan","Kuliner Prancis"]}},
 {id:"rome",name:"Rome",country:{en:"Italy",id:"Italia"},region:"Europe",cat:"culture",tag:{en:"Ancient history & food",id:"Sejarah kuno & kuliner"},duration:"3–5 days",desc:{en:"Ancient ruins, grand squares and neighbourhood trattorias reward a considered pace. Book popular archaeological sites in advance and leave time between landmarks to understand the city's broader history.",id:"Reruntuhan kuno, alun-alun megah, dan trattoria kawasan layak dinikmati dengan ritme terukur. Pesan situs arkeologi populer lebih awal dan sisakan waktu untuk memahami sejarah kota."},image:"https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=82",alt:{en:"Historic architecture and streets in Rome, Italy",id:"Arsitektur bersejarah dan jalan di Roma, Italia"},highlights:{en:["Archaeological sites","Italian cuisine","Historic neighbourhoods"],id:["Situs arkeologi","Kuliner Italia","Kawasan bersejarah"]}},
 {id:"santorini",name:"Santorini",country:{en:"Greece",id:"Yunani"},region:"Europe",cat:"coast",tag:{en:"Island scenery & villages",id:"Panorama pulau & desa"},duration:"3–5 days",desc:{en:"Whitewashed villages, volcanic cliffs, caldera viewpoints and coastal paths shape a distinctive island experience. Consider seasonal visitor levels, island transport and walking time between viewpoints and villages.",id:"Desa bercat putih, tebing vulkanik, panorama kaldera, dan jalur pesisir membentuk pengalaman khas pulau. Pertimbangkan kepadatan musiman, transportasi, dan waktu berjalan antartempat."},image:"https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?auto=format&fit=crop&w=900&q=82",alt:{en:"Whitewashed Santorini buildings overlooking the Aegean Sea",id:"Bangunan putih Santorini menghadap Laut Aegea"},highlights:{en:["Island villages","Volcanic scenery","Coastal walks"],id:["Desa pulau","Lanskap vulkanik","Jalan kaki pesisir"]}},
@@ -555,14 +811,22 @@ const D=[
 {id:"rio",name:"Rio de Janeiro",country:{en:"Brazil",id:"Brasil"},region:"South America",cat:"coast",tag:{en:"Beach, culture & city",id:"Pantai, budaya & kota"},duration:"4–6 days",desc:{en:"Mountain-and-sea scenery, beach districts, music and urban culture create a vivid coastal city experience. Plan neighbourhood transfers carefully, check current local guidance and keep personal safety in mind.",id:"Panorama gunung dan laut, distrik pantai, musik, serta budaya kota menciptakan pengalaman pesisir yang hidup. Rencanakan perpindahan kawasan, periksa panduan lokal, dan perhatikan keselamatan pribadi."},image:"https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=82",alt:{en:"Rio de Janeiro with mountains, coast and city scenery",id:"Rio de Janeiro dengan pegunungan, pesisir, dan panorama kota"},highlights:{en:["Coastal neighbourhoods","Music and culture","Scenic viewpoints"],id:["Kawasan pesisir","Musik dan budaya","Panorama kota"]}},
 {id:"patagonia",name:"Patagonia",country:{en:"Argentina & Chile",id:"Argentina & Chili"},region:"South America",cat:"nature",tag:{en:"Glaciers & remote trails",id:"Gletser & jalur terpencil"},duration:"6–10 days",desc:{en:"Mountain silhouettes, glaciers and open trails reward travellers who allow time for weather, transfers and route planning. Remote hikes require appropriate equipment, preparation and respect for park restrictions.",id:"Siluet pegunungan, gletser, dan jalur terbuka berkesan bagi wisatawan yang menyediakan waktu untuk cuaca, transportasi, dan perencanaan. Pendakian terpencil membutuhkan perlengkapan dan kepatuhan aturan taman."},image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82",alt:{en:"Expansive rugged mountain landscape in Patagonia",id:"Bentang pegunungan terjal dan luas di Patagonia"},highlights:{en:["Long-distance hiking","Glacier scenery","Weather planning"],id:["Pendakian jarak jauh","Panorama gletser","Perencanaan cuaca"]}},
 {id:"sydney",name:"Sydney",country:{en:"Australia",id:"Australia"},region:"Oceania",cat:"city",tag:{en:"Harbour & city culture",id:"Pelabuhan & budaya kota"},duration:"3–5 days",desc:{en:"Harbour landmarks, coastal walks, beaches and an easy-going urban food culture make a varied city break. Plan outdoor time around local conditions and account for distances between harbour-side neighbourhoods.",id:"Landmark pelabuhan, jalur pesisir, pantai, dan budaya kuliner kota menciptakan liburan beragam. Atur kegiatan luar ruang sesuai kondisi setempat dan perhitungkan jarak antarkawasan."},image:"https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=82",alt:{en:"Sydney Opera House and harbour skyline",id:"Sydney Opera House dan cakrawala pelabuhan"},highlights:{en:["Harbour walks","Coastal paths","Food and design"],id:["Jalan kaki pelabuhan","Jalur pesisir","Kuliner dan desain"]}},
-{id:"yogyakarta",name:"Yogyakarta",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"culture",tag:{en:"Javanese heritage",id:"Warisan Jawa"},duration:"3–4 days",desc:{en:"Explore a lively cultural city known for royal heritage, batik workshops, local food and easy access to remarkable temples. Plan sunrise excursions separately and confirm transport for out-of-town sights.",id:"Jelajahi kota budaya dengan warisan keraton, lokakarya batik, kuliner lokal, dan akses ke candi bersejarah. Atur kunjungan matahari terbit secara terpisah dan pastikan transportasi ke lokasi luar kota."},image:"https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=82",alt:{en:"Traditional Indonesian temple and heritage architecture",id:"Candi tradisional Indonesia dan arsitektur warisan budaya"},highlights:{en:["Kraton heritage","Batik & crafts","Javanese cuisine"],id:["Warisan keraton","Batik & kerajinan","Kuliner Jawa"]}},
+{id:"yogyakarta",name:"Yogyakarta",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"culture",tag:{en:"Javanese heritage",id:"Warisan Jawa"},duration:"3–4 days",desc:{en:"Explore a lively cultural city known for royal heritage, batik workshops, local food and easy access to remarkable temples. Plan sunrise excursions separately and confirm transport for out-of-town sights.",id:"Jelajahi kota budaya dengan warisan keraton, lokakarya batik, kuliner lokal, dan akses ke candi bersejarah. Atur kunjungan matahari terbit secara terpisah dan pastikan transportasi ke lokasi luar kota."},image:"https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=900&q=82",alt:{en:"Traditional Indonesian temple and heritage architecture",id:"Candi tradisional Indonesia dan arsitektur warisan budaya"},highlights:{en:["Kraton heritage","Batik & crafts","Javanese cuisine"],id:["Warisan keraton","Batik & kerajinan","Kuliner Jawa"]}},
 {id:"borobudur",name:"Borobudur",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"culture",tag:{en:"UNESCO temple heritage",id:"Warisan candi UNESCO"},duration:"1–2 days",desc:{en:"Visit the monumental Buddhist temple complex and surrounding Central Java countryside. Access rules and elevated-structure visits can change, so check official ticketing, entry times and conservation guidance before travelling.",id:"Kunjungi kompleks candi Buddha monumental di tengah lanskap pedesaan Jawa Tengah. Aturan akses dan kunjungan ke struktur candi dapat berubah; periksa tiket resmi, jam masuk, dan panduan konservasi."},image:"https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=900&q=82",alt:{en:"Ancient Indonesian stone temple complex surrounded by greenery",id:"Kompleks candi batu kuno Indonesia dikelilingi kehijauan"},highlights:{en:["Temple architecture","Cultural history","Central Java landscapes"],id:["Arsitektur candi","Sejarah budaya","Lanskap Jawa Tengah"]}},
-{id:"bromo",name:"Mount Bromo",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Volcanic sunrise",id:"Matahari terbit vulkanik"},duration:"2–3 days",desc:{en:"A dramatic volcanic landscape of caldera viewpoints, sea-of-sand terrain and highland scenery. Sunrise outings start early; check current volcanic advisories, park rules, weather and transport conditions before entering the area.",id:"Lanskap vulkanik dramatis dengan panorama kaldera, lautan pasir, dan dataran tinggi. Perjalanan matahari terbit dimulai dini hari; periksa peringatan aktivitas gunung, aturan taman, cuaca, dan kondisi transportasi."},image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=82",alt:{en:"Misty volcanic mountain landscape at sunrise",id:"Lanskap gunung vulkanik berkabut saat matahari terbit"},highlights:{en:["Sunrise viewpoints","Volcanic scenery","Highland landscapes"],id:["Panorama matahari terbit","Lanskap vulkanik","Pemandangan dataran tinggi"]}},
+{id:"bromo",name:"Mount Bromo",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Volcanic sunrise",id:"Matahari terbit vulkanik"},duration:"2–3 days",desc:{en:"A dramatic volcanic landscape of caldera viewpoints, sea-of-sand terrain and highland scenery. Sunrise outings start early; check current volcanic advisories, park rules, weather and transport conditions before entering the area.",id:"Lanskap vulkanik dramatis dengan panorama kaldera, lautan pasir, dan dataran tinggi. Perjalanan matahari terbit dimulai dini hari; periksa peringatan aktivitas gunung, aturan taman, cuaca, dan kondisi transportasi."},image:"https://images.unsplash.com/photo-1602154663343-89fe0bf541ab?auto=format&fit=crop&w=900&q=82",alt:{en:"Misty volcanic mountain landscape at sunrise",id:"Lanskap gunung vulkanik berkabut saat matahari terbit"},highlights:{en:["Sunrise viewpoints","Volcanic scenery","Highland landscapes"],id:["Panorama matahari terbit","Lanskap vulkanik","Pemandangan dataran tinggi"]}},
 {id:"labuan-bajo",name:"Labuan Bajo",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Island-hopping gateway",id:"Gerbang jelajah pulau"},duration:"3–5 days",desc:{en:"Use this harbour town as a base for boat journeys through the islands and bays of Komodo National Park. Compare licensed operators, check sea conditions and confirm park fees and wildlife-viewing rules before departure.",id:"Jadikan kota pelabuhan ini titik awal perjalanan kapal menyusuri pulau dan teluk Taman Nasional Komodo. Bandingkan operator berizin, periksa kondisi laut, serta pastikan biaya taman dan aturan melihat satwa sebelum berangkat."},image:"https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=82",alt:{en:"Tropical Indonesian islands and clear blue sea",id:"Pulau tropis Indonesia dan laut biru jernih"},highlights:{en:["Boat excursions","Island viewpoints","Coastal seafood"],id:["Wisata kapal","Panorama pulau","Hidangan laut pesisir"]}},
-{id:"komodo",name:"Komodo National Park",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"wildlife",tag:{en:"Wildlife & marine life",id:"Satwa & kehidupan laut"},duration:"2–4 days",desc:{en:"Rugged islands, marine habitats and the world's famous Komodo dragons make this a distinctive conservation destination. Visit with authorised guides, follow ranger instructions and keep a respectful distance from wildlife.",id:"Pulau berbukit, habitat laut, dan komodo menjadikan kawasan ini destinasi konservasi yang khas. Berkunjunglah dengan pemandu resmi, ikuti arahan ranger, dan jaga jarak aman dari satwa."},image:"https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=82",alt:{en:"Remote Indonesian island coastline with turquoise water",id:"Garis pantai pulau terpencil Indonesia dengan air biru kehijauan"},highlights:{en:["Guided wildlife walks","Marine biodiversity","Island landscapes"],id:["Jelajah satwa berpemandu","Keanekaragaman laut","Lanskap kepulauan"]}},
+{id:"komodo",name:"Komodo National Park",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"wildlife",tag:{en:"Wildlife & marine life",id:"Satwa & kehidupan laut"},duration:"2–4 days",desc:{en:"Rugged islands, marine habitats and the world's famous Komodo dragons make this a distinctive conservation destination. Visit with authorised guides, follow ranger instructions and keep a respectful distance from wildlife.",id:"Pulau berbukit, habitat laut, dan komodo menjadikan kawasan ini destinasi konservasi yang khas. Berkunjunglah dengan pemandu resmi, ikuti arahan ranger, dan jaga jarak aman dari satwa."},image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=82",alt:{en:"Remote Indonesian island coastline with turquoise water",id:"Garis pantai pulau terpencil Indonesia dengan air biru kehijauan"},highlights:{en:["Guided wildlife walks","Marine biodiversity","Island landscapes"],id:["Jelajah satwa berpemandu","Keanekaragaman laut","Lanskap kepulauan"]}},
 {id:"lombok",name:"Lombok",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Beaches & mountain trails",id:"Pantai & jalur pegunungan"},duration:"4–6 days",desc:{en:"Discover quieter beaches, traditional Sasak culture, waterfalls and views of Mount Rinjani. Trekking conditions and access depend on season and official park guidance; arrange qualified guides for mountain routes.",id:"Jelajahi pantai, budaya Sasak, air terjun, dan panorama Gunung Rinjani. Kondisi pendakian dan akses bergantung pada musim serta panduan resmi taman; gunakan pemandu berkualifikasi untuk rute gunung."},image:"https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=900&q=82",alt:{en:"Tropical island coastline with palm trees and turquoise sea",id:"Pesisir pulau tropis dengan pohon palem dan laut biru kehijauan"},highlights:{en:["Sasak culture","Beach days","Waterfalls & hiking"],id:["Budaya Sasak","Wisata pantai","Air terjun & pendakian"]}},
 {id:"lake-toba",name:"Lake Toba",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Volcanic lake & Batak culture",id:"Danau vulkanik & budaya Batak"},duration:"3–5 days",desc:{en:"A vast volcanic lake framed by highlands, with Samosir Island offering Batak cultural heritage and relaxed lakeside villages. Allow extra time for ferry connections and check local transport schedules when moving around the lake.",id:"Danau vulkanik luas yang dikelilingi dataran tinggi, dengan Pulau Samosir yang menyimpan warisan budaya Batak dan desa tepi danau. Sisihkan waktu untuk feri dan periksa jadwal transportasi lokal."},image:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=82",alt:{en:"Serene lake surrounded by green mountains",id:"Danau tenang yang dikelilingi pegunungan hijau"},highlights:{en:["Samosir Island","Batak heritage","Lakeside scenery"],id:["Pulau Samosir","Warisan Batak","Panorama tepi danau"]}},
-{id:"wakatobi",name:"Wakatobi",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Reefs & diving",id:"Terumbu & menyelam"},duration:"4–6 days",desc:{en:"A celebrated marine area known for coral reef ecosystems, clear waters and island communities. Dive with responsible operators, respect marine-protection rules and confirm flights and boat transfers well ahead of this remote journey.",id:"Kawasan bahari yang dikenal dengan ekosistem terumbu karang, perairan jernih, dan komunitas pulau. Menyelamlah dengan operator bertanggung jawab, patuhi perlindungan laut, serta pastikan penerbangan dan kapal jauh hari."},image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=82",alt:{en:"Clear tropical water over a vibrant coral reef",id:"Air tropis jernih di atas terumbu karang berwarna"},highlights:{en:["Coral reefs","Responsible diving","Island communities"],id:["Terumbu karang","Menyelam bertanggung jawab","Komunitas pulau"]}}
+{id:"wakatobi",name:"Wakatobi",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Reefs & diving",id:"Terumbu & menyelam"},duration:"4–6 days",desc:{en:"A celebrated marine area known for coral reef ecosystems, clear waters and island communities. Dive with responsible operators, respect marine-protection rules and confirm flights and boat transfers well ahead of this remote journey.",id:"Kawasan bahari yang dikenal dengan ekosistem terumbu karang, perairan jernih, dan komunitas pulau. Menyelamlah dengan operator bertanggung jawab, patuhi perlindungan laut, serta pastikan penerbangan dan kapal jauh hari."},image:"https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=82",alt:{en:"Clear tropical water over a vibrant coral reef",id:"Air tropis jernih di atas terumbu karang berwarna"},highlights:{en:["Coral reefs","Responsible diving","Island communities"],id:["Terumbu karang","Menyelam bertanggung jawab","Komunitas pulau"]}},
+{id:"prambanan",name:"Prambanan Temple",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"culture",tag:{en:"Hindu temple heritage",id:"Warisan candi Hindu"},duration:"1–2 days",desc:{en:"Explore the soaring temple compounds and carved stone architecture of this major Javanese heritage site. Confirm current visitor access, opening hours and conservation rules, and leave time for the surrounding archaeological landscape.",id:"Jelajahi kompleks candi menjulang dan arsitektur batu berukir di situs warisan utama Jawa ini. Pastikan akses pengunjung, jam buka, dan aturan konservasi terkini serta sisihkan waktu untuk kawasan arkeologi di sekitarnya."},image:"https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=82",alt:{en:"Historic Indonesian temple architecture and stonework",id:"Arsitektur candi Indonesia bersejarah dan pahatan batu"},highlights:{en:["Temple architecture","Javanese heritage","Sunset viewpoints"],id:["Arsitektur candi","Warisan Jawa","Panorama senja"]}},
+{id:"tumpak-sewu",name:"Tumpak Sewu Waterfall",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Waterfall adventure",id:"Petualangan air terjun"},duration:"1–2 days",desc:{en:"A dramatic amphitheatre of waterfalls set inside a lush gorge in East Java. Access involves uneven paths, stairs and changing water conditions; check local guidance, weather and safe access before descending.",id:"Amfiteater air terjun yang dramatis di dalam ngarai hijau Jawa Timur. Akses melibatkan jalur tidak rata, tangga, dan kondisi air yang berubah; periksa arahan lokal, cuaca, dan keamanan sebelum turun."},image:"https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=900&q=82",alt:{en:"Tall waterfall cascading down a lush green cliff",id:"Air terjun tinggi yang mengalir di tebing hijau rimbun"},highlights:{en:["Waterfall viewpoints","Forest trails","Weather-aware hiking"],id:["Panorama air terjun","Jalur hutan","Pendakian sesuai cuaca"]}},
+{id:"nusa-penida",name:"Nusa Penida",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Cliffs & island coves",id:"Tebing & teluk pulau"},duration:"2–4 days",desc:{en:"Discover limestone headlands, turquoise coves and rugged island viewpoints southeast of Bali. Roads can be narrow and beach access steep; plan realistic transfer times, check sea conditions and avoid unsafe cliff edges.",id:"Jelajahi tanjung batu kapur, teluk biru kehijauan, dan panorama pulau yang terjal di tenggara Bali. Jalan dapat sempit dan akses pantai curam; rencanakan waktu perjalanan, periksa kondisi laut, dan hindari tepi tebing berbahaya."},image:"https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=900&q=82",alt:{en:"Nusa Penida limestone cliffs above turquoise water",id:"Tebing batu kapur Nusa Penida di atas air biru kehijauan"},highlights:{en:["Coastal viewpoints","Island beaches","Responsible sea trips"],id:["Panorama pesisir","Pantai pulau","Wisata laut bertanggung jawab"]}},
+{id:"kawah-ijen",name:"Kawah Ijen",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Crater lake & volcano",id:"Danau kawah & gunung api"},duration:"1–2 days",desc:{en:"A striking volcanic crater area in East Java, known for its acidic lake and demanding highland walk. Volcanic gas exposure and access restrictions can change quickly; review official alerts, current conditions and guide requirements before visiting.",id:"Kawasan kawah vulkanik di Jawa Timur dengan danau asam dan jalur dataran tinggi yang menantang. Paparan gas vulkanik dan pembatasan akses dapat berubah cepat; periksa peringatan resmi, kondisi terkini, dan kebutuhan pemandu."},image:"https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=82",alt:{en:"Dramatic mountain summit beneath a deep night sky",id:"Puncak gunung dramatis di bawah langit malam"},highlights:{en:["Volcanic landscapes","Guided highland walks","Official safety alerts"],id:["Lanskap vulkanik","Jalur dataran tinggi berpemandu","Peringatan keselamatan resmi"]}},
+{id:"tana-toraja",name:"Tana Toraja",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"culture",tag:{en:"Torajan living heritage",id:"Warisan budaya Toraja"},duration:"3–4 days",desc:{en:"A culturally distinctive highland region known for Tongkonan architecture, carved details, village landscapes and important living traditions. Visit respectfully, follow community guidance and ask permission before photographing ceremonies or residents.",id:"Kawasan dataran tinggi dengan budaya khas, arsitektur Tongkonan, ukiran, lanskap desa, dan tradisi yang masih hidup. Berkunjunglah dengan hormat, ikuti panduan masyarakat, dan minta izin sebelum memotret upacara atau warga."},image:"https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=900&q=82",alt:{en:"Traditional architecture in a lush Southeast Asian landscape",id:"Arsitektur tradisional di lanskap hijau Asia Tenggara"},highlights:{en:["Tongkonan architecture","Cultural etiquette","Highland scenery"],id:["Arsitektur Tongkonan","Etika budaya","Panorama dataran tinggi"]}},
+{id:"bunaken",name:"Bunaken Marine Park",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Coral reefs & diving",id:"Terumbu karang & menyelam"},duration:"3–5 days",desc:{en:"Explore coral gardens and marine habitats off North Sulawesi with responsible snorkelling and diving operators. Check sea conditions, operator safety standards and local marine-protection rules, and never touch coral or wildlife.",id:"Jelajahi taman karang dan habitat laut di Sulawesi Utara bersama operator snorkeling dan menyelam yang bertanggung jawab. Periksa kondisi laut, standar keselamatan operator, serta aturan perlindungan; jangan menyentuh karang atau satwa."},image:"https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=82",alt:{en:"Blue ocean water and rolling sea surface",id:"Air laut biru dan permukaan samudra bergelombang"},highlights:{en:["Snorkelling & diving","Marine biodiversity","Reef-safe travel"],id:["Snorkeling & menyelam","Keanekaragaman laut","Wisata menjaga terumbu"]}},
+{id:"derawan",name:"Derawan Islands",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"coast",tag:{en:"Remote island escape",id:"Liburan pulau terpencil"},duration:"3–5 days",desc:{en:"A remote island group in East Kalimantan known for clear waters, beaches and marine life. Transfers may involve several connections; plan carefully, choose responsible boat operators and check local rules for sensitive habitats.",id:"Gugusan pulau terpencil di Kalimantan Timur dengan perairan jernih, pantai, dan kehidupan laut. Perjalanan dapat memerlukan beberapa koneksi; rencanakan dengan cermat, pilih operator kapal bertanggung jawab, dan periksa aturan habitat sensitif."},image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=82",alt:{en:"Lush tropical greenery and island vegetation",id:"Kehijauan tropis dan vegetasi pulau"},highlights:{en:["Island beaches","Marine life","Low-impact travel"],id:["Pantai pulau","Kehidupan laut","Wisata berdampak rendah"]}},
+{id:"dieng-plateau",name:"Dieng Plateau",country:{en:"Indonesia",id:"Indonesia"},region:"Asia",cat:"nature",tag:{en:"Highland lakes & heritage",id:"Danau dataran tinggi & warisan"},duration:"1–3 days",desc:{en:"A cool highland landscape in Central Java with volcanic features, crater lakes and ancient temple compounds. Temperatures can be low in the early morning; check local access and weather, and stay on marked paths around geothermal areas.",id:"Lanskap dataran tinggi sejuk di Jawa Tengah dengan bentang vulkanik, danau kawah, serta kompleks candi kuno. Suhu dapat rendah pada pagi hari; periksa akses dan cuaca setempat, lalu tetap di jalur resmi di kawasan panas bumi."},image:"https://images.unsplash.com/photo-1566552881560-0be862a7c445?auto=format&fit=crop&w=900&q=82",alt:{en:"Misty mountain ridges in a highland landscape",id:"Punggung pegunungan berkabut di dataran tinggi"},highlights:{en:["Volcanic lakes","Ancient temples","Cool highland air"],id:["Danau vulkanik","Candi kuno","Udara dataran tinggi"]}}
 ];
 const ROUTES=[
 {id:"heritage",n:"01",type:{en:"CULTURE-LED",id:"FOKUS BUDAYA"},title:{en:"Japan: city energy to quiet tradition",id:"Jepang: energi kota dan tradisi"},desc:{en:"A culture-forward concept pairing Tokyo's urban districts with Kyoto's historic streets. It is designed for flexible pacing; check transport schedules, timed entry and seasonal demand before booking.",id:"Konsep rute budaya yang memadukan distrik perkotaan Tokyo dengan jalan bersejarah Kyoto. Ritmenya fleksibel; periksa jadwal transportasi, akses terjadwal, dan permintaan musiman sebelum memesan."},days:{en:"6–9 days",id:"6–9 hari"},stops:["tokyo","kyoto"],tag:{en:["Architecture","Food","Heritage"],id:["Arsitektur","Kuliner","Warisan"]}},
@@ -583,7 +847,7 @@ const start=$("#planStart"),old=start.value;start.innerHTML='<option value="">'+
 function updateSavedFilter(){const b=$("#savedFilter");b.setAttribute("aria-pressed",String(state.savedOnly));b.textContent=t("catSaved")+(saved.size?" ("+saved.size+")":"")}
 function getFiltered(){let items=D.filter(d=>{const hay=[d.name,d.country.en,d.country.id,d.region,d.tag.en,d.tag.id,d.desc.en,d.desc.id].join(" ").toLocaleLowerCase();return(!state.query||hay.includes(state.query.toLocaleLowerCase()))&&(state.region==="all"||d.region===state.region)&&(state.category==="all"||d.cat===state.category)&&(!state.savedOnly||saved.has(d.id))});if(state.sort==="az")items.sort((a,b)=>a.name.localeCompare(b.name));else if(state.sort==="region")items.sort((a,b)=>a.region.localeCompare(b.region)||a.name.localeCompare(b.name));return items}
 function syncControls(){$("#searchText").value=state.query;$("#searchRegion").value=state.region;$("#searchCategory").value=state.category;$("#sortOrder").value=state.sort;$$("[data-category]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.category===state.category&&!state.savedOnly)));$$("[data-region]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.region===state.region)));updateSavedFilter()}
-function renderDestinations(){const grid=$("#destinationGrid"),all=getFiltered(),shown=(state.expanded||state.savedOnly||state.query||state.region!=="all"||state.category!=="all")?all:all.slice(0,9);$("#resultCount").textContent=all.length+" "+t("resultCount");grid.innerHTML=shown.length?shown.map(d=>'<article class="destination-card" id="destination-'+d.id+'"><div class="card-image" data-image-family="'+esc(d.cat)+'"><img src="'+d.image+'" alt="'+esc(d.alt[lang])+'" loading="lazy" decoding="async"><span class="card-region">'+esc(regionText(d.region))+'</span><button type="button" class="card-heart" data-save="'+d.id+'" aria-pressed="'+saved.has(d.id)+'" aria-label="'+esc((saved.has(d.id)?t("savedPlace"):t("savePlace"))+" — "+d.name)+'">'+(saved.has(d.id)?"♥":"♡")+'</button><div class="card-image-caption"><div><small>'+esc(d.country[lang])+'</small><strong>'+esc(d.name)+'</strong></div><span>'+esc(lang==="en"?d.duration:d.duration.replace(" days"," hari"))+'</span></div></div><div class="card-content"><div class="card-meta"><span>'+esc(regionText(d.region))+'</span><strong>'+esc(categoryText(d.cat))+'</strong></div><h3>'+esc(d.name)+'</h3><p>'+esc(d.desc[lang])+'</p><div class="card-bottom"><span class="card-tag">'+esc(d.tag[lang])+'</span><div class="card-actions"><button class="card-action" type="button" data-detail="'+d.id+'">'+t("viewDetails")+' <span aria-hidden="true">↗</span></button><button class="card-action" type="button" data-add="'+d.id+'" aria-label="'+esc(t("addToRoute")+" — "+d.name)+'">+ '+t("addToRoute").replace("+","")+'</button></div></div></div></article>').join(""):'<div class="empty-state">'+t(state.savedOnly?"savedEmpty":"filterEmpty")+'</div>';
+function renderDestinations(){const grid=$("#destinationGrid"),all=getFiltered(),shown=(state.expanded||state.savedOnly||state.query||state.region!=="all"||state.category!=="all")?all:all.slice(0,9);$("#resultCount").textContent=all.length+" "+t("resultCount");const totalCounter=$("#sectionDestinationCount"),heroCounter=$("#heroDestinationCount");if(totalCounter)totalCounter.textContent=String(D.length);if(heroCounter)heroCounter.textContent=String(D.length);$("[data-region-count]").forEach(el=>{const count=D.filter(d=>d.region===el.dataset.regionCount).length;el.textContent=lang==="en"?count+" "+(count===1?"place":"places"):count+" destinasi"});const totalCounter=$("#sectionDestinationCount"),heroCounter=$("#heroDestinationCount");if(totalCounter)totalCounter.textContent=String(D.length);if(heroCounter)heroCounter.textContent=String(D.length);$("[data-region-count]").forEach(el=>{const count=D.filter(d=>d.region===el.dataset.regionCount).length;el.textContent=lang==="en"?count+" "+(count===1?"place":"places"):count+" destinasi"});grid.innerHTML=shown.length?shown.map(d=>'<article class="destination-card" id="destination-'+d.id+'"><div class="card-image" data-image-family="'+esc(d.cat)+'"><img src="'+d.image+'" alt="'+esc(d.alt[lang])+'" loading="lazy" decoding="async"><span class="card-region">'+esc(regionText(d.region))+'</span><button type="button" class="card-heart" data-save="'+d.id+'" aria-pressed="'+saved.has(d.id)+'" aria-label="'+esc((saved.has(d.id)?t("savedPlace"):t("savePlace"))+" — "+d.name)+'">'+(saved.has(d.id)?"♥":"♡")+'</button><div class="card-image-caption"><div><small>'+esc(d.country[lang])+'</small><strong>'+esc(d.name)+'</strong></div><span>'+esc(lang==="en"?d.duration:d.duration.replace(" days"," hari"))+'</span></div></div><div class="card-content"><div class="card-meta"><span>'+esc(regionText(d.region))+'</span><strong>'+esc(categoryText(d.cat))+'</strong></div><h3>'+esc(d.name)+'</h3><p>'+esc(d.desc[lang])+'</p><div class="card-bottom"><span class="card-tag">'+esc(d.tag[lang])+'</span><div class="card-actions"><button class="card-action" type="button" data-detail="'+d.id+'">'+t("viewDetails")+' <span aria-hidden="true">↗</span></button><button class="card-action" type="button" data-add="'+d.id+'" aria-label="'+esc(t("addToRoute")+" — "+d.name)+'">+ '+t("addToRoute").replace("+","")+'</button></div></div></div></article>').join(""):'<div class="empty-state">'+t(state.savedOnly?"savedEmpty":"filterEmpty")+'</div>';
 
 $("#showMore").hidden=all.length<=9;$("#showMore").textContent=t(state.expanded?"showLess":"showMore");$("#clearFilters").hidden=state.category==="all"&&state.region==="all"&&!state.query&&!state.savedOnly&&state.sort==="featured";syncControls()}
 function renderRouteStops(){const list=$("#routeStops");$("#stopCount").textContent=routeStops.length+" / 5 "+t("stopCounter");list.innerHTML=routeStops.length?routeStops.map((id,i)=>'<span class="stop-chip"><span>'+String(i+1).padStart(2,"0")+' · '+esc(byId(id).name)+'</span><button type="button" data-remove-stop="'+id+'" aria-label="'+esc((lang==="en"?"Remove ":"Hapus ")+byId(id).name)+'">×</button></span>').join(""):'<span class="stop-empty">'+t("stopEmpty")+'</span>'}
