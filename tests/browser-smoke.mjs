@@ -51,8 +51,16 @@ try {
   pass("Dynamic destination totals and search cover the Indonesia additions");
 
   await page.locator("#indonesiaFilter").click();
-  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 18);
-  assert.equal(await page.locator("#indonesiaFilter").getAttribute("aria-pressed"), "true");
+  const indonesiaDiagnostics = await page.evaluate(() => ({
+    pressed: document.querySelector("#indonesiaFilter")?.getAttribute("aria-pressed"),
+    countrySelect: document.querySelector("#searchCountry")?.value,
+    query: document.querySelector("#searchText")?.value,
+    resultCount: document.querySelector("#resultCount")?.textContent,
+    cards: document.querySelectorAll("#destinationGrid .destination-card").length,
+    visibleCountries: [...document.querySelectorAll("#destinationGrid .card-image-caption small")].map(el => el.textContent).slice(0, 12)
+  }));
+  assert.equal(indonesiaDiagnostics.cards, 18, "Indonesia quick filter diagnostics: " + JSON.stringify(indonesiaDiagnostics));
+  assert.equal(indonesiaDiagnostics.pressed, "true", "Indonesia button should expose pressed state");
   await page.locator("#indonesiaFilter").click();
   assert.equal(await page.locator("#destinationGrid .destination-card").count(), 9);
   pass("Indonesia quick filter returns all 18 local destinations and toggles cleanly");
