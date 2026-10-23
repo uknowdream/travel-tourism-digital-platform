@@ -149,6 +149,37 @@ try {
   assert.ok(plannerLayout.inputFont >= 16, "Mobile inputs should avoid browser auto-zoom");
   pass("Trip planner responsive layout fits mobile viewport: " + JSON.stringify(plannerLayout));
 
+  const responsiveMatrix = [];
+  for (const width of [1024, 820, 600, 520, 390, 350]) {
+    await mobile.setViewportSize({ width, height: 844 });
+    await mobile.locator("#planner").scrollIntoViewIfNeeded();
+    const metrics = await mobile.evaluate(() => {
+      const layout = document.querySelector(".planner-layout");
+      const fields = document.querySelector(".planner-fields");
+      const card = document.querySelector(".planner-card").getBoundingClientRect();
+      const actions = [...document.querySelectorAll(".planner-actions > *")];
+      return {
+        width: innerWidth,
+        layoutTracks: getComputedStyle(layout).gridTemplateColumns.trim().split(/\s+/).length,
+        fieldTracks: getComputedStyle(fields).gridTemplateColumns.trim().split(/\s+/).length,
+        documentWidth: document.documentElement.scrollWidth,
+        cardFits: card.left >= -1 && card.right <= innerWidth + 1,
+        actionsFit: actions.every(el => {
+          const r = el.getBoundingClientRect();
+          return r.width === 0 || (r.left >= card.left - 1 && r.right <= card.right + 1);
+        })
+      };
+    });
+    assert.ok(metrics.documentWidth <= width + 1, "Planner page overflow at " + width + "px: " + JSON.stringify(metrics));
+    assert.equal(metrics.layoutTracks, width > 820 ? 2 : 1, "Unexpected planner shell columns at " + width + "px");
+    assert.equal(metrics.fieldTracks, width <= 600 ? 1 : 2, "Unexpected form field columns at " + width + "px");
+    assert.ok(metrics.cardFits && metrics.actionsFit, "Planner elements escape card at " + width + "px: " + JSON.stringify(metrics));
+    responsiveMatrix.push(metrics);
+  }
+  pass("Trip planner viewport matrix 1024 / 820 / 600 / 520 / 390 / 350px: " + JSON.stringify(responsiveMatrix));
+  await mobile.setViewportSize({ width: 390, height: 844 });
+
+
   await mobile.locator("#menuToggle").click();
   assert.equal(await mobile.locator("#menuToggle").getAttribute("aria-expanded"), "true");
   await mobile.locator('#mobileNav a[href="#destinations"]').click();
