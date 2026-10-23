@@ -75,7 +75,7 @@ def main():
     check(bool(title and ("Travel & Tourism Digital Platform" in title.group(1) or "Travel &amp; Tourism Digital Platform" in title.group(1))), "Document title includes product name")
     check('name="description"' in html and 'property="og:title"' in html and 'property="og:image"' in html, "SEO and social preview metadata present")
 
-    ids_required = ["destinationGrid", "plannerForm", "tripEstimate", "tripWarnings", "tripItinerary", "tripResult", "routeDestinationPicker", "indonesiaFilter", "shareBrief", "printBrief", "calendarBrief"]
+    ids_required = ["destinationGrid", "plannerForm", "tripEstimate", "tripWarnings", "tripItinerary", "tripResult", "routeDestinationPicker", "indonesiaFilter", "shareBrief", "printBrief", "calendarBrief", "compareSaved", "comparePanel", "compareGrid", "dialogMap", "dialogCompare", "dialogShare"]
     check(all(f'id="{value}"' in html for value in ids_required), "Destination catalogue and planner features are present")
     keys_ok = html.count("briefRawToggle:") == 2
     check(keys_ok, "Planner result summary has English and Indonesian labels")
@@ -96,6 +96,10 @@ def main():
     check('img.removeAttribute("srcset")' in html and 'img.removeAttribute("sizes")' in html, "Failed responsive images clear srcset before recovery")
     check(all(x in html for x in ["function makeShareUrl()", "function loadSharedPlanFromUrl()", "function downloadCalendar()", "function printBrief()"]), "Shareable planner, calendar export and print features exist")
     check('data-country-search="Indonesia"' in html and 'id="indonesiaCount"' in html, "Indonesia quick filter exists")
+    check('const active=state.country==="Indonesia"' in html, "Indonesia quick filter uses country state consistently")
+    check(all(x in html for x in ["function renderCompare()", "function toggleCompare(id)", "ttdp:compare"]), "Saved destination comparison persists locally")
+    check(all(x in html for x in ["function shareDestination(id)", "function loadSharedDestinationFromUrl()", "google.com/maps/search"]), "Destination map and shareable deep-link actions exist")
+    check(".compare-grid{display:grid" in html and "@media(max-width:600px)" in html, "Destination comparison panel has mobile layout rules")
     check('id="searchCountry"' in html and 'country:"all"' in html and 'd.country.en===state.country' in html, "Country dropdown filters the destination catalogue")
     check('function moveStop(id,delta)' in html and 'data-move-stop-up' in html and 'data-move-stop-down' in html, "Route stops can be reordered")
     check('id="heroSlideToggle"' in html and 'function syncHeroSlideToggle()' in html, "Carousel has accessible pause/play control")
