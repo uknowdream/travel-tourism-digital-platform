@@ -56,6 +56,15 @@ try {
   await page.locator("#indonesiaFilter").click();
   assert.equal(await page.locator("#destinationGrid .destination-card").count(), 9);
   pass("Indonesia quick filter returns all 18 local destinations and toggles cleanly");
+  const countrySelect = page.locator("#searchCountry");
+  assert.equal(await countrySelect.locator('option[value="Indonesia"]').count(), 1);
+  await countrySelect.selectOption("Indonesia");
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 18);
+  assert.equal(await countrySelect.inputValue(), "Indonesia");
+  await countrySelect.selectOption("all");
+  assert.equal(await page.locator("#destinationGrid .destination-card").count(), 9);
+  pass("Country dropdown filters all Indonesian destinations and resets correctly");
+
 
 
 
@@ -72,6 +81,14 @@ try {
   await page.locator("#heroSlidePrev").click();
   assert.equal(await page.locator("#heroSlideIndex").innerText(), "01 / 05");
   pass("Five-slide hero carousel controls and active pagination work");
+  assert.equal(await page.locator("#heroSlideToggle").isEnabled(), true);
+  await page.locator("#heroSlideToggle").click();
+  assert.equal(await page.locator("#heroSlideToggle").getAttribute("aria-pressed"), "true");
+  assert.match(await page.locator("#heroSlideToggle").getAttribute("aria-label"), /Pause|Play automatic slideshow/);
+  await page.locator("#heroSlideToggle").click();
+  assert.equal(await page.locator("#heroSlideToggle").getAttribute("aria-pressed"), "false");
+  pass("Slideshow has a working accessible pause/play toggle");
+
 
 
   await page.locator("[data-detail]").first().click();
@@ -89,6 +106,18 @@ try {
   await page.locator("#routeDestinationPicker").selectOption("tokyo");
   await page.locator("#addSelectedStop").click();
   assert.equal(await page.locator("#routeStops .stop-chip").count(), 1);
+  await page.locator("#routeDestinationPicker").selectOption("kyoto");
+  await page.locator("#addSelectedStop").click();
+  assert.equal(await page.locator("#routeStops .stop-chip").count(), 2);
+  let stopNames = await page.locator("#routeStops .stop-name").allTextContents();
+  assert.match(stopNames[0], /tokyo/i);
+  assert.match(stopNames[1], /kyoto/i);
+  await page.locator("#routeStops [data-move-stop-up='kyoto']").click();
+  stopNames = await page.locator("#routeStops .stop-name").allTextContents();
+  assert.match(stopNames[0], /kyoto/i);
+  assert.match(stopNames[1], /tokyo/i);
+  pass("Route stops can be reordered and the selected order is reflected in the planner");
+
   await page.locator("#planNotes").fill("Keep this personal note out of share links");
   await page.locator("#planStart").selectOption("bali");
   await page.locator("#planDuration").selectOption({ label: "6–9 days" });
@@ -189,6 +218,8 @@ try {
   await mobile.goto("http://127.0.0.1:4173/", { waitUntil: "domcontentloaded" });
   await mobile.locator("#destinationGrid .destination-card").first().waitFor({ timeout: 15000 });
   assert.equal(await mobile.locator("#destinationGrid").evaluate(el => getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length), 1);
+  assert.ok(await mobile.locator("#destinationGrid .destination-card img").first().getAttribute("srcset"));
+
   assert.ok(Number.parseFloat(await mobile.locator("#planNotes").evaluate(el => getComputedStyle(el).fontSize)) >= 16);
   await mobile.locator("#planner").scrollIntoViewIfNeeded();
   const plannerLayout = await mobile.evaluate(() => {
