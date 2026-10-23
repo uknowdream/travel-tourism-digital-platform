@@ -29,6 +29,12 @@ jobs:
         run: python scripts/site_qa.py --js-out /tmp/travel-tourism-inline.js
       - name: Validate inline JavaScript syntax
         run: node --check /tmp/travel-tourism-inline.js
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --prefix /tmp/ttdp-browser --no-save playwright
+          /tmp/ttdp-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Run desktop and mobile browser smoke tests
+        run: node tests/browser-smoke.mjs
       - name: Validate crawler files
         run: |
           python - <<'PY'
