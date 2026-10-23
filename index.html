@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#081a2b"><meta name="description" content="Travel & Tourism Digital Platform — destinasi pilihan, inspirasi perjalanan, dan paket wisata di Indonesia."><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Travel & Tourism Digital Platform"><meta property="og:title" content="Travel & Tourism Digital Platform | Transportasi & Wisata Rombongan"><meta property="og:description" content="Jelajahi Yogyakarta, Malang, pantai, pegunungan, dan destinasi pilihan Indonesia bersama Travel & Tourism Digital Platform."><meta name="twitter:card" content="summary_large_image">
-<title>Travel & Tourism Digital Platform | Transportasi &amp; Wisata Rombongan</title>
+<meta name="theme-color" content="#081a2b"><meta name="description" content="Travel & Tourism Digital Platform — destinasi pilihan, inspirasi perjalanan, dan paket wisata di Indonesia."><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Travel & Tourism Digital Platform"><meta property="og:title" content="Travel & Tourism Digital Platform | Travel Portfolio"><meta property="og:description" content="Jelajahi destinasi pilihan, inspirasi perjalanan, dan paket wisata di Indonesia."><meta name="twitter:card" content="summary_large_image">
+<title>Travel &amp; Tourism Digital Platform | Travel Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -1259,7 +1259,7 @@ document.querySelectorAll('.package-link').forEach(link=>link.addEventListener('
   nodes.forEach(n=>{const original=originalText.get(n);if(original!=null)n.nodeValue=translated(original,lang)});
   document.querySelectorAll('*').forEach(el=>{const data=originalAttrs.get(el);if(!data)return;Object.entries(data).forEach(([k,v])=>el.setAttribute(k,translated(v,lang)))});
   options.forEach(({el,original})=>{el.textContent=translated(original,lang)});
-  document.title=lang==='en'?'Travel & Tourism Digital Platform | Group Transport & Tours':'Travel & Tourism Digital Platform | Transportasi & Wisata Rombongan';
+  document.title=lang==='en'?'Travel & Tourism Digital Platform | Travel Portfolio':'Travel & Tourism Digital Platform | Transportasi & Wisata Rombongan';
   const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=lang==='en'?'Travel & Tourism Digital Platform — destination discovery, travel inspiration, and curated tour packages.':'Travel & Tourism Digital Platform — layanan transportasi, perjalanan dinas, dan wisata rombongan di Indonesia.';
   toggle.textContent=lang==='en'?'🇬🇧 EN / ID':'🇮🇩 ID / EN';toggle.setAttribute('aria-label',lang==='en'?'Switch language to Indonesian':'Switch language to English');toggle.title=lang==='en'?'Switch to Indonesian':'Switch to English';
   try{localStorage.setItem('syauqim71:language',lang)}catch(e){}
