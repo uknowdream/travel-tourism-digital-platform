@@ -100,6 +100,8 @@ test('trip planner makes a dated itinerary and labels estimates as indicative', 
 
 
 test('Indonesia filter, share-safe planner links, print and calendar export are present', () => {
+  assert.match(html, /function applyCountryFilter\(country\)/);
+  assert.match(html, /applyCountryFilter\(select\.value\)/);
   assert.match(html, /data-country-search="Indonesia"/);
   assert.match(html, /function makeShareUrl\(\)/);
   assert.match(html, /function loadSharedPlanFromUrl\(\)/);
