@@ -895,6 +895,12 @@ button{max-width:100%;overflow-wrap:anywhere}
  .hero-slide-arrow{width:27px;height:27px}
 }
 
+
+/* Explicit percentage sizing prevents the hero media layer collapsing on compact viewports */
+.hero-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-width:none!important;aspect-ratio:auto!important;margin:0!important}
+.hero-art-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-width:none!important;overflow:hidden!important}
+.hero-art-image img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;object-fit:cover!important}
+
 </style></head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skipLink">Skip to main content</a>
