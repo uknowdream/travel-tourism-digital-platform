@@ -115,8 +115,8 @@ test('Indonesia filter, share-safe planner links, print and calendar export are 
   assert.match(html, /@media print/);
 });
 
-test('visible typography has a 10px minimum on explicit pixel font sizes', () => {
-  const declarations = [...css.matchAll(/font-size\s*:\s*([^;]+);/g)].map(match => match[1]);
+test('all authored and generated typography has a 10px minimum on explicit pixel font sizes', () => {
+  const declarations = [...html.matchAll(/font-size\s*:\s*([^;]+);/g)].map(match => match[1]);
   const tooSmall = declarations.flatMap(value => [...value.matchAll(/(\d+(?:\.\d+)?)px/g)]
     .map(match => Number(match[1])).filter(px => px < 10));
   assert.deepEqual(tooSmall, []);
