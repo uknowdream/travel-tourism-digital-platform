@@ -336,7 +336,8 @@ try {
       const heroLayers = hero && art && copy && controls ? {
         backgroundCoversPanel: Math.abs(art.left - hero.left) <= 2 && Math.abs(art.top - hero.top) <= 2 && Math.abs(art.right - hero.right) <= 2 && Math.abs(art.bottom - hero.bottom) <= 2,
         copyInsidePanel: copy.left >= hero.left - 1 && copy.right <= hero.right + 1 && copy.top >= hero.top - 1 && copy.bottom <= hero.bottom + 2,
-        controlsInsidePanel: controls.left >= hero.left - 1 && controls.right <= hero.right + 1 && controls.top >= hero.top - 1 && controls.bottom <= hero.bottom + 1
+        controlsInsidePanel: controls.left >= hero.left - 1 && controls.right <= hero.right + 1 && controls.top >= hero.top - 1 && controls.bottom <= hero.bottom + 1,
+        rectangles: { hero: { left: Math.round(hero.left), top: Math.round(hero.top), right: Math.round(hero.right), bottom: Math.round(hero.bottom), height: Math.round(hero.height) }, art: { left: Math.round(art.left), top: Math.round(art.top), right: Math.round(art.right), bottom: Math.round(art.bottom), height: Math.round(art.height) }, copy: { top: Math.round(copy.top), bottom: Math.round(copy.bottom), height: Math.round(copy.height) }, controls: { top: Math.round(controls.top), bottom: Math.round(controls.bottom) } }
       } : null;
       return {
         width: innerWidth,
