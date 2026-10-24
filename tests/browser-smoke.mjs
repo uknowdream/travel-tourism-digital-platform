@@ -329,16 +329,29 @@ try {
           outside.push({ selector, left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) });
         }
       }
+      const hero = document.querySelector(".hero")?.getBoundingClientRect();
+      const art = document.querySelector(".hero-art-image")?.getBoundingClientRect();
+      const copy = document.querySelector(".hero-copy")?.getBoundingClientRect();
+      const controls = document.querySelector(".hero-slideshow-controls")?.getBoundingClientRect();
+      const heroLayers = hero && art && copy && controls ? {
+        backgroundCoversPanel: Math.abs(art.left - hero.left) <= 2 && Math.abs(art.top - hero.top) <= 2 && Math.abs(art.right - hero.right) <= 2 && Math.abs(art.bottom - hero.bottom) <= 2,
+        copyInsidePanel: copy.left >= hero.left - 1 && copy.right <= hero.right + 1 && copy.top >= hero.top - 1 && copy.bottom <= hero.bottom + 2,
+        controlsInsidePanel: controls.left >= hero.left - 1 && controls.right <= hero.right + 1 && controls.top >= hero.top - 1 && controls.bottom <= hero.bottom + 1
+      } : null;
       return {
         width: innerWidth,
         documentWidth: document.documentElement.scrollWidth,
         bodyWidth: document.body.scrollWidth,
-        outside
+        outside,
+        heroLayers
       };
     });
     assert.ok(metrics.documentWidth <= width + 1, "Full page horizontal overflow at " + width + "px: " + JSON.stringify(metrics));
     assert.ok(metrics.bodyWidth <= width + 1, "Body horizontal overflow at " + width + "px: " + JSON.stringify(metrics));
     assert.deepEqual(metrics.outside, [], "A major site section escapes the viewport at " + width + "px: " + JSON.stringify(metrics.outside));
+    assert.ok(metrics.heroLayers?.backgroundCoversPanel, "Hero background image does not cover the full hero panel at " + width + "px: " + JSON.stringify(metrics.heroLayers));
+    assert.ok(metrics.heroLayers?.copyInsidePanel, "Hero copy escapes the hero panel at " + width + "px: " + JSON.stringify(metrics.heroLayers));
+    assert.ok(metrics.heroLayers?.controlsInsidePanel, "Slideshow controls escape the hero panel at " + width + "px: " + JSON.stringify(metrics.heroLayers));
     fullSiteMatrix.push(metrics);
   }
   pass("Whole-site responsive matrix 1440 down to 320px: " + JSON.stringify(fullSiteMatrix));
